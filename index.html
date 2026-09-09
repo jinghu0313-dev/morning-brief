@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨间新闻看板 · 2026-09-09</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg2:#0f1733;
+    --panel:#141c3a;
+    --panel2:#1a2347;
+    --line:#283463;
+    --text:#e8ecff;
+    --muted:#9aa6d4;
+    --accent:#5b8cff;
+    --gold:#f5c451;
+    --red:#ff6b6b;
+    --green:#3ddc97;
+    --orange:#ff9f43;
+    --purple:#a78bfa;
+    --cyan:#22d3ee;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1280px;margin:0 auto;padding:24px 20px 80px}
+  .header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}
+  .header h1{font-size:28px;margin:0 0 6px 0;letter-spacing:.5px}
+  .header .sub{color:var(--muted);font-size:14px}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,#2a3a8c,#5b8cff);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+  .stamp{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px}
+  .stamp .dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green)}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;position:relative;overflow:hidden}
+  .card h3{margin:0 0 12px 0;font-size:16px;letter-spacing:.4px;display:flex;align-items:center;gap:8px}
+  .card h3 .ico{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#0b1020}
+  .col-12{grid-column:span 12}
+  .col-8{grid-column:span 8}
+  .col-6{grid-column:span 6}
+  .col-4{grid-column:span 4}
+  .col-3{grid-column:span 3}
+  @media (max-width:1024px){
+    .col-8,.col-6,.col-4,.col-3{grid-column:span 12}
+  }
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:#0f1733;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .kpi .num{font-size:22px;font-weight:700;color:var(--gold)}
+  .kpi .lbl{color:var(--muted);font-size:12px;margin-top:2px}
+  @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .topics{display:flex;flex-direction:column;gap:10px}
+  .topic{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#0f1733;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+  .topic .pri{font-size:11px;font-weight:700;padding:4px 8px;border-radius:6px;white-space:nowrap;align-self:start}
+  .pri-p0{background:var(--red);color:#fff}
+  .pri-p1{background:var(--orange);color:#1c1300}
+  .pri-p2{background:var(--gold);color:#1c1300}
+  .pri-p3{background:var(--cyan);color:#0b1020}
+  .topic h4{margin:0 0 4px 0;font-size:15px}
+  .topic .meta{color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .topic .src{font-size:11px;color:var(--muted)}
+  .topic .body{font-size:13px;color:#d4dcff;margin-top:6px;line-height:1.55}
+  .cat{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid transparent}
+  .cat-民生{background:rgba(61,220,151,.12);color:var(--green);border-color:rgba(61,220,151,.4)}
+  .cat-外交{background:rgba(91,140,255,.15);color:var(--accent);border-color:rgba(91,140,255,.4)}
+  .cat-政治{background:rgba(255,107,107,.12);color:var(--red);border-color:rgba(255,107,107,.4)}
+  .cat-经济{background:rgba(245,196,81,.12);color:var(--gold);border-color:rgba(245,196,81,.4)}
+  .cat-文化{background:rgba(167,139,250,.15);color:var(--purple);border-color:rgba(167,139,250,.4)}
+  .cat-两岸{background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.4)}
+  .cat-国际{background:rgba(255,159,67,.12);color:var(--orange);border-color:rgba(255,159,67,.4)}
+  ol.rank{list-style:none;margin:0;padding:0;counter-reset:rk}
+  ol.rank li{counter-increment:rk;display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  ol.rank li:last-child{border-bottom:none}
+  ol.rank li::before{content:counter(rk);flex:0 0 22px;height:22px;border-radius:6px;background:#1a2347;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+  table.srcs{width:100%;border-collapse:collapse;font-size:13px}
+  table.srcs th,table.srcs td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+  table.srcs th{color:var(--muted);font-weight:500;font-size:12px}
+  table.srcs td.num{color:var(--gold);font-weight:600}
+  .legend{color:var(--muted);font-size:12px;margin-top:8px}
+  .priority-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--muted);margin-top:8px}
+  .priority-legend span{display:inline-flex;gap:6px;align-items:center}
+  .priority-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.twocol{grid-template-columns:1fr}}
+  .box{background:#0f1733;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;color:#d4dcff}
+  footer{margin-top:24px;color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 版本提示条 -->
+  <div style="background:rgba(91,140,255,.12);border:1px solid rgba(91,140,255,.45);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:#cbd2ff">
+    📌 今日 <b>2026-09-09（第 3 期）</b> · 每天 09:00 自动更新本页，链接不变
+  </div>
+
+  <!-- 头部 -->
+  <div class="header">
+    <div>
+      <h1>晨间新闻看板 <span class="badge">9:00 版 · 今日热点已刷新</span></h1>
+      <div class="sub">综合新华社 · 央视 · 人民日报 · 中国新闻网 · 海关总署 · 国家医保局 · 最高检 等公开报道</div>
+    </div>
+    <div class="stamp">
+      <span class="dot"></span>
+      <span>2026/09/09 · 星期三 · 农历七月廿八 · 实时刷新</span>
+    </div>
+  </div>
+
+  <!-- 概览数据 -->
+  <div class="grid" style="margin-bottom:16px">
+    <div class="card col-12">
+      <h3>今日数据概览</h3>
+      <div class="kpis">
+        <div class="kpi"><div class="num">8</div><div class="lbl">今日选题（综合）</div></div>
+        <div class="kpi"><div class="num">7</div><div class="lbl">核心议题分类</div></div>
+        <div class="kpi"><div class="num">12+</div><div class="lbl">权威信源覆盖</div></div>
+        <div class="kpi"><div class="num">P0·2</div><div class="lbl">最高优先级议题</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <div class="grid">
+
+    <!-- 今日热点选题 -->
+    <div class="card col-8">
+      <h3><span class="ico" style="background:var(--gold)">1</span>今日热点选题（按优先级排序）</h3>
+      <div class="topics">
+
+        <div class="topic">
+          <div class="pri pri-p0">P0 · 头条</div>
+          <div>
+            <h4>习近平应约同英国首相伯纳姆通电话</h4>
+            <div class="meta">
+              <span class="cat cat-政治">元首外交</span>
+              <span class="cat cat-外交">外交</span>
+              <span class="cat cat-国际">中欧关系</span>
+              <span class="src">来源：新华社 · 央视新闻</span>
+            </div>
+            <div class="body">8 日晚，国家主席习近平应约同英国首相伯纳姆通电话。这是中英高层的一次重要沟通，正值中欧关系互动频密期，外电普遍关注通话释放的信号。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p0">P0 · 头条</div>
+          <div>
+            <h4>海关总署：前 8 个月货物贸易进出口 34.78 万亿元，同比增长 17.6%</h4>
+            <div class="meta">
+              <span class="cat cat-经济">外贸</span>
+              <span class="cat cat-政治">宏观</span>
+              <span class="src">来源：海关总署 · 央视 · 新华社</span>
+            </div>
+            <div class="body">与 112 个国家和地区实现出口、进口双增长，外贸延续两位数快速增长态势，展现中国经济韧性。人民币跨境支付系统（CIPS）与 11 家外资银行直接参与行签约，首次覆盖卢旺达、土耳其、乌兹别克斯坦等国。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p1">P1 · 重点</div>
+          <div>
+            <h4>七部门发文：持续扩大灵活就业人员等群体基本医保参保规模</h4>
+            <div class="meta">
+              <span class="cat cat-民生">医保</span>
+              <span class="cat cat-民生">灵活就业</span>
+              <span class="src">来源：国家医保局 · 财政部 · 央视</span>
+            </div>
+            <div class="body">计划用 3 年左右时间扩大参保规模；灵活就业人员参加职工医保缴费年限可按月累计，每满 12 个月折算 1 年。涉及数亿灵活就业者的权益保障取得实质进展。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p1">P1 · 重点</div>
+          <div>
+            <h4>2026 年服贸会今日开幕：90 个国家（地区）和国际组织、1800 余家企业参展</h4>
+            <div class="meta">
+              <span class="cat cat-经济">服贸</span>
+              <span class="cat cat-外交">开放</span>
+              <span class="src">来源：央视新闻 · 商务部</span>
+            </div>
+            <div class="body">中国国际服务贸易交易会今天在北京开幕，全球服务贸易领域成果集中亮相，展示我国服务业扩大开放与数字贸易发展新动能。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p2">P2 · 关注</div>
+          <div>
+            <h4>上海生育保障政策升级：10 月 1 日起生娃个人"不花钱"</h4>
+            <div class="meta">
+              <span class="cat cat-民生">生育保障</span>
+              <span class="cat cat-民生">医保</span>
+              <span class="src">来源：上海发布 · 中国新闻网</span>
+            </div>
+            <div class="body">产检超额费用全兜底、住院分娩政策内费用全报销，补贴额度未用完产后可领余额，被称为"最实惠生育福利包"，为全国生育支持政策提供样本。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p2">P2 · 关注</div>
+          <div>
+            <h4>纪检监察机关持续正风肃纪；最高检通报扫黑除恶专项斗争成果</h4>
+            <div class="meta">
+              <span class="cat cat-政治">法治</span>
+              <span class="cat cat-政治">从严治党</span>
+              <span class="src">来源：最高检 · 央视新闻</span>
+            </div>
+            <div class="body">最高检通报：自 7 月深化扫黑除恶专项斗争开展以来，全国检察机关起诉涉黑涉恶案件 151 件 900 人；市场监管总局报告显示 2025 年查处各类不正当竞争案件 1.47 万件、罚没款 6.15 亿元，法治化营商环境持续优化。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p3">P3 · 资讯</div>
+          <div>
+            <h4>江西遂川高坪镇泥石流已致 12 人遇难，仍有 1 人失联</h4>
+            <div class="meta">
+              <span class="cat cat-民生">灾害救援</span>
+              <span class="cat cat-民生">民生</span>
+              <span class="src">来源：央视 · 新华社 · 腾讯新闻</span>
+            </div>
+            <div class="body">截至 8 日 18 时，5 日凌晨发生的泥石流灾害现场已致 12 人遇难（含 1 名新增失联人员），救援力量正加大搜救力度。中央气象台继续发布暴雨预警，四川盆地西北部等地局地有大暴雨。</div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <div class="pri pri-p3">P3 · 资讯</div>
+          <div>
+            <h4>中国天眼 FASHI DR2 发布：构建世界最大中性氢星系样本库；全球创新指数中国四连冠</h4>
+            <div class="meta">
+              <span class="cat cat-文化">科技</span>
+              <span class="cat cat-经济">创新</span>
+              <span class="src">来源：国家天文台 · WIPO 报告</span>
+            </div>
+            <div class="body">国家天文台姜鹏团队牵头的 FAST 中性氢巡天项目发布第二期数据集，构建当今世界规模最大的中性氢星系样本库。世界知识产权组织《2026 年全球创新指数》：中国上榜创新集群数量连续第四年世界第一。</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="priority-legend">
+        <span><i style="background:var(--red)"></i>P0 头条（必看）</span>
+        <span><i style="background:var(--orange)"></i>P1 重点（深读）</span>
+        <span><i style="background:var(--gold)"></i>P2 关注（推荐）</span>
+        <span><i style="background:var(--cyan)"></i>P3 资讯（了解）</span>
+      </div>
+    </div>
+
+    <!-- 来源矩阵 -->
+    <div class="card col-4">
+      <h3><span class="ico" style="background:var(--accent)">2</span>来源矩阵</h3>
+      <table class="srcs">
+        <thead><tr><th>信源</th><th>收录条数</th><th>最高优先级</th></tr></thead>
+        <tbody>
+          <tr><td>央视新闻 / 央视网</td><td class="num">14</td><td>P0</td></tr>
+          <tr><td>新华社</td><td class="num">10</td><td>P0</td></tr>
+          <tr><td>中国新闻网 / 浙江新闻</td><td class="num">8</td><td>P0–P1</td></tr>
+          <tr><td>腾讯新闻</td><td class="num">6</td><td>P2</td></tr>
+          <tr><td>海关总署 / 国家医保局</td><td class="num">4</td><td>P0–P1</td></tr>
+          <tr><td>最高检 / 中央纪委</td><td class="num">4</td><td>P2</td></tr>
+          <tr><td>上海发布 / 武汉卫健委</td><td class="num">3</td><td>P2–P3</td></tr>
+          <tr><td>视频号 / 短视频</td><td class="num">6</td><td>P2</td></tr>
+        </tbody>
+      </table>
+      <div class="legend">* "收录条数"按 9/8–9/9 周期内早间推送/早报、专题、官方发布等聚合估算。</div>
+    </div>
+
+    <!-- 早间阅读量 TOP6 -->
+    <div class="card col-6">
+      <h3><span class="ico" style="background:var(--green)">3</span>早间阅读量 TOP 6</h3>
+      <ol class="rank">
+        <li>前 8 个月外贸进出口 34.78 万亿元、同比增长 17.6% — 海关总署 / 央视</li>
+        <li>习近平应约同英国首相伯纳姆通电话 — 新华社 / 央视</li>
+        <li>七部门：灵活就业人员医保缴费年限可按月累计 — 国家医保局 / 央视</li>
+        <li>最高检通报：扫黑除恶专项斗争起诉涉黑涉恶 900 人 — 最高检 / 央视</li>
+        <li>市场监管总局：2025 查处不正当竞争案件 1.47 万件 — 市场监管总局</li>
+        <li>2026 服贸会开幕，90 国家（地区）和国际组织参展 — 央视 / 商务部</li>
+      </ol>
+    </div>
+
+    <!-- 视频号 / 短视频高热 -->
+    <div class="card col-6">
+      <h3><span class="ico" style="background:var(--purple)">4</span>视频号 · 短视频高热</h3>
+      <ol class="rank">
+        <li>郑钦文确认持外卡参加 2026 中国网球公开赛正赛 — 中网组委会 / 央视</li>
+        <li>张新当选新一届中国羽毛球协会主席 — 央视 / 新华社</li>
+        <li>中国对尼泊尔第四批紧急援助物资运抵加德满都 — 央视</li>
+        <li>武汉非法辅助生殖地下实验室被查封，8 名涉案人员被控制 — 武汉卫健委</li>
+        <li>贺兰山岩画新一轮复查新发现 500 多幅 — 宁夏日报</li>
+        <li>贵州从江小学生连续三年帮军属收稻，网友：少年心有万丈光 — 新华社</li>
+      </ol>
+    </div>
+
+    <!-- 两岸 · 国际 -->
+    <div class="card col-12">
+      <h3><span class="ico" style="background:var(--orange)">5</span>两岸 · 国际关系速览</h3>
+      <div class="twocol">
+        <div class="box">
+          <div style="color:var(--gold);font-weight:600;margin-bottom:6px">两岸 · 周边</div>
+          • 外交部回应日本称《联合国宪章》"敌国条款"过时：日本应当以史为鉴，同军国主义彻底切割，以实际行动取信亚洲邻国和国际社会。<br>
+          • 韩国医美平台"江南姐姐"泄露 22 万用户信息，近 5000 名中国人受波及；中国天眼 DR2 数据集、贺兰山岩画等文化科技话题热度走高。
+        </div>
+        <div class="box">
+          <div style="color:var(--accent);font-weight:600;margin-bottom:6px">国际关系</div>
+          • 加拿大对美国等额反制关税 8 日凌晨正式生效，覆盖钢铁、乳制品、农用设备、纸浆及电子产品等进口商品。<br>
+          • 法英等 12 国发表联合声明，限制与约旦河西岸以色列定居点商品贸易。<br>
+          • 伊朗总统：将继续全力抵抗；俄罗斯在暂停 3 天后恢复对基辅空袭，乌称多地遭无人机袭击。<br>
+          • 法国雷诺阿博物馆 4 件艺术品被盗，国际文化界震动。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    本看板由 WorkBuddy 综合公开渠道自动生成 · 数据截至 2026/09/09 09:00（GMT+8）· 仅供内参，内容以官方发布为准
+  </footer>
+</div>
+</body>
+</html>

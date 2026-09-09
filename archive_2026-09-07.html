@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨间新闻看板 · 2026-09-07</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg2:#0f1733;
+    --panel:#141c3a;
+    --panel2:#1a2347;
+    --line:#283463;
+    --text:#e8ecff;
+    --muted:#9aa6d4;
+    --accent:#5b8cff;
+    --gold:#f5c451;
+    --red:#ff6b6b;
+    --green:#3ddc97;
+    --orange:#ff9f43;
+    --purple:#a78bfa;
+    --cyan:#22d3ee;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1280px;margin:0 auto;padding:24px 20px 80px}
+  .header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}
+  .header h1{font-size:28px;margin:0 0 6px 0;letter-spacing:.5px}
+  .header .sub{color:var(--muted);font-size:14px}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,#2a3a8c,#5b8cff);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+  .stamp{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px}
+  .stamp .dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green)}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;position:relative;overflow:hidden}
+  .card h3{margin:0 0 12px 0;font-size:16px;letter-spacing:.4px;display:flex;align-items:center;gap:8px}
+  .card h3 .ico{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#0b1020}
+  .col-12{grid-column:span 12}
+  .col-8{grid-column:span 8}
+  .col-6{grid-column:span 6}
+  .col-4{grid-column:span 4}
+  .col-3{grid-column:span 3}
+  @media (max-width:1024px){
+    .col-8,.col-6,.col-4,.col-3{grid-column:span 12}
+  }
+
+  /* 概览数据 */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:#0f1733;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .kpi .num{font-size:22px;font-weight:700;color:var(--gold)}
+  .kpi .lbl{color:var(--muted);font-size:12px;margin-top:2px}
+  @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  /* 选题清单 */
+  .topics{display:flex;flex-direction:column;gap:10px}
+  .topic{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#0f1733;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start}
+  .topic .pri{font-size:11px;font-weight:700;padding:4px 8px;border-radius:6px;white-space:nowrap;align-self:start}
+  .pri-p0{background:var(--red);color:#fff}
+  .pri-p1{background:var(--orange);color:#1c1300}
+  .pri-p2{background:var(--gold);color:#1c1300}
+  .pri-p3{background:var(--cyan);color:#0b1020}
+  .topic h4{margin:0 0 4px 0;font-size:15px}
+  .topic .meta{color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .topic .meta .tag{background:#1a2347;border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:#cbd2ff;font-size:11px}
+  .topic .src{font-size:11px;color:var(--muted)}
+  .topic .body{font-size:13px;color:#d4dcff;margin-top:6px;line-height:1.55}
+
+  /* 分类标签 */
+  .cat{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid transparent}
+  .cat-民生{background:rgba(61,220,151,.12);color:var(--green);border-color:rgba(61,220,151,.4)}
+  .cat-外交{background:rgba(91,140,255,.15);color:var(--accent);border-color:rgba(91,140,255,.4)}
+  .cat-政治{background:rgba(255,107,107,.12);color:var(--red);border-color:rgba(255,107,107,.4)}
+  .cat-经济{background:rgba(245,196,81,.12);color:var(--gold);border-color:rgba(245,196,81,.4)}
+  .cat-文化{background:rgba(167,139,250,.15);color:var(--purple);border-color:rgba(167,139,250,.4)}
+  .cat-两岸{background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.4)}
+  .cat-国际{background:rgba(255,159,67,.12);color:var(--orange);border-color:rgba(255,159,67,.4)}
+
+  /* 排行 */
+  ol.rank{list-style:none;margin:0;padding:0;counter-reset:rk}
+  ol.rank li{counter-increment:rk;display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  ol.rank li:last-child{border-bottom:none}
+  ol.rank li::before{content:counter(rk);flex:0 0 22px;height:22px;border-radius:6px;background:#1a2347;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+
+  /* 来源矩阵 */
+  table.srcs{width:100%;border-collapse:collapse;font-size:13px}
+  table.srcs th,table.srcs td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+  table.srcs th{color:var(--muted);font-weight:500;font-size:12px}
+  table.srcs td.num{color:var(--gold);font-weight:600}
+
+  .legend{color:var(--muted);font-size:12px;margin-top:8px}
+  .priority-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--muted);margin-top:8px}
+  .priority-legend span{display:inline-flex;gap:6px;align-items:center}
+  .priority-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  footer{margin-top:24px;color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 头部 -->
+  <div class="header">
+    <div>
+      <h1>晨间新闻看板 <span class="badge">9:00 版 · 今日热点已刷新</span></h1>
+      <div class="sub">综合新华社 · 央视 · 人民日报 · 今日头条 · 视频号 · 外交部 · 工信部 · 财政部 · 公安部 等公开报道</div>
+    </div>
+    <div class="stamp">
+      <span class="dot"></span>
+      <span>2026/09/07 · 星期一 · 农历七月廿六 · 实时刷新</span>
+    </div>
+  </div>
+
+  <!-- 概览数据 -->
+  <div class="grid" style="margin-bottom:16px">
+    <div class="card col-12">
+      <h3>今日数据概览</h3>
+      <div class="kpis">
+        <div class="kpi"><div class="num">8</div><div class="lbl">今日选题（综合）</div></div>
+        <div class="kpi"><div class="num">6</div><div class="lbl">核心议题分类</div></div>
+        <div class="kpi"><div class="num">12+</div><div class="lbl">权威信源覆盖</div></div>
+        <div class="kpi"><div class="num">P0·2</div><div class="lbl">最高优先级议题</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <div class="grid">
+
+    <!-- 今日热点选题 -->
+    <div class="card col-8">
+      <h3><span class="ico" style="background:var(--gold)">1</span>今日热点选题（按优先级排序）</h3>
+
+      <div class="topics">
+
+        <!-- P0-1 -->
+        <div class="topic">
+          <div class="pri pri-p0">P0 · 头条</div>
+          <div>
+            <h4>财政部发行 3000 亿元特别国债，向 8 家中央金融企业注资 3600 亿元</h4>
+            <div class="meta">
+              <span class="cat cat-民生">民生/资本</span>
+              <span class="cat cat-经济">经济</span>
+              <span class="cat cat-政治">宏观政策</span>
+              <span class="src">来源：财政部 · 新华社 · 人民日报</span>
+            </div>
+            <div class="body">工行 1000 亿、农行 1600 亿、保险四家合计 600 亿、政策性行两家 400 亿，烟草跟投 600 亿。为应对 2027 年起抬升的监管资本底线，属"未雨绸缪"前瞻性安排，为"十五五"金融强国建设夯实基础。</div>
+          </div>
+          <div class="src">人民日报 06 版头条</div>
+        </div>
+
+        <!-- P0-2 -->
+        <div class="topic">
+          <div class="pri pri-p0">P0 · 头条</div>
+          <div>
+            <h4>卡塔尔首相兼外交大臣穆罕默德 9 月 7—8 日访华，重点谈 LNG 长期保供</h4>
+            <div class="meta">
+              <span class="cat cat-外交">外交</span>
+              <span class="cat cat-国际">国际</span>
+              <span class="cat cat-经济">能源安全</span>
+              <span class="src">来源：外交部 · 新华社 · 央视新闻</span>
+            </div>
+            <div class="body">议题覆盖液化天然气长期保供、双向投资、基础设施、数字经济、新能源及中东地区热点。卡塔尔是我国重要天然气来源国，访华期间将进行会谈并出席相关活动。</div>
+          </div>
+          <div class="src">陆家嘴财经早餐</div>
+        </div>
+
+        <!-- P1-1 -->
+        <div class="topic">
+          <div class="pri pri-p1">P1 · 重点</div>
+          <div>
+            <h4>西藏吉隆"8·26"泥石流灾害：43 人遇难、519 人失联</h4>
+            <div class="meta">
+              <span class="cat cat-民生">民生/应急</span>
+              <span class="src">来源：央视新闻 · 新华社 · 水利部</span>
+            </div>
+            <div class="body">水利部滚动会商：堰塞湖河道过流正常，冰湖整体稳定；浙江、江西、黑龙江等地 10 条河流仍维持超警，最大超警幅度 1.04 米。下一步持续开展失联人员全面搜寻，做好善后处置。</div>
+          </div>
+          <div class="src">应急管理热点</div>
+        </div>
+
+        <!-- P1-2 -->
+        <div class="topic">
+          <div class="pri pri-p1">P1 · 重点</div>
+          <div>
+            <h4>国新办发布会：四部门联合推动历史经典产业高质量发展</h4>
+            <div class="meta">
+              <span class="cat cat-文化">文化</span>
+              <span class="cat cat-经济">产业</span>
+              <span class="src">来源：国新办 · 工信部 · 商务部 · 文旅部 · 市监总局</span>
+            </div>
+            <div class="body">9 月 7 日 10 时，工信部副部长谢远生介绍丝绸、茶叶、瓷器、酿酒、中药、文房四宝六大品类《指导意见（2026–2030 年）》，落实"两个结合"，推动中华优秀传统文化"双创"。</div>
+          </div>
+          <div class="src">国新办发布</div>
+        </div>
+
+        <!-- P2-1 -->
+        <div class="topic">
+          <div class="pri pri-p2">P2 · 关注</div>
+          <div>
+            <h4>"国家反诈 AI"App 正式上线，微信、支付宝小程序同步开放</h4>
+            <div class="meta">
+              <span class="cat cat-民生">民生/反诈</span>
+              <span class="cat cat-政治">法治</span>
+              <span class="src">来源：公安部 · 央视新闻 · 今日头条</span>
+            </div>
+            <div class="body">公安部刑侦局指导，上海市公安局自主研发。具备 AI 大模型智能问答、反诈资讯、反诈辞典三大功能，可在各大应用市场下载使用。</div>
+          </div>
+          <div class="src">反诈热点</div>
+        </div>
+
+        <!-- P2-2 -->
+        <div class="topic">
+          <div class="pri pri-p2">P2 · 关注</div>
+          <div>
+            <h4>第 30 届鲁台经贸洽谈会在山东举办，约 800 位两岸人士参会</h4>
+            <div class="meta">
+              <span class="cat cat-两岸">两岸</span>
+              <span class="cat cat-经济">经贸</span>
+              <span class="src">来源：人民日报海外版 · 山东省政府</span>
+            </div>
+            <div class="body">主题"乘势奋进'十五五' 鲁台共绘新图景"，迎来"而立之年"。主办为山东省政府和国务院台办，议题从经贸对接走向推动鲁台融合发展。</div>
+          </div>
+          <div class="src">两岸经贸</div>
+        </div>
+
+        <!-- P3-1 -->
+        <div class="topic">
+          <div class="pri pri-p3">P3 · 资讯</div>
+          <div>
+            <h4>瑞金至延安高铁直达开通，全程约 1850 公里、运行约 11 小时 32 分</h4>
+            <div class="meta">
+              <span class="cat cat-民生">交通/民生</span>
+              <span class="cat cat-文化">红色文化</span>
+              <span class="src">来源：央视新闻 · 新华社</span>
+            </div>
+            <div class="body">G3998 次复兴号智能动车组 6 日 11:02 从瑞金站驶出。中央红军长征出发地（瑞金）与落脚地（延安）首次实现高铁直达。</div>
+          </div>
+          <div class="src">交通新</div>
+        </div>
+
+        <!-- P3-2 -->
+        <div class="topic">
+          <div class="pri pri-p3">P3 · 资讯</div>
+          <div>
+            <h4>中国—美国印太战区指挥官会晤重启，涉台海方向沟通机制恢复</h4>
+            <div class="meta">
+              <span class="cat cat-国际">国际</span>
+              <span class="cat cat-两岸">两岸</span>
+              <span class="cat cat-外交">军事外交</span>
+              <span class="src">来源：环球时报 · 联合早报 · 新华社</span>
+            </div>
+            <div class="body">东部战区司令员杨志斌与美军太平洋司令部司令帕帕罗 8/31–9/2 在加拿大维多利亚举行首次面对面会晤。沟通层级由"恢复接触"走向"建立机制"，但台海分歧并未解决，沟通旨在管控风险、避免误判。</div>
+          </div>
+          <div class="src">环球时报 Hai Feng</div>
+        </div>
+
+      </div>
+
+      <div class="priority-legend">
+        <span><i style="background:var(--red)"></i>P0 头条（必看）</span>
+        <span><i style="background:var(--orange)"></i>P1 重点（深读）</span>
+        <span><i style="background:var(--gold)"></i>P2 关注（推荐）</span>
+        <span><i style="background:var(--cyan)"></i>P3 资讯（了解）</span>
+      </div>
+    </div>
+
+    <!-- 来源矩阵 -->
+    <div class="card col-4">
+      <h3><span class="ico" style="background:var(--accent)">2</span>来源矩阵</h3>
+      <table class="srcs">
+        <thead><tr><th>信源</th><th>收录条数</th><th>最高优先级</th></tr></thead>
+        <tbody>
+          <tr><td>新华社</td><td class="num">14</td><td>P0</td></tr>
+          <tr><td>央视新闻 / 央视网</td><td class="num">11</td><td>P0</td></tr>
+          <tr><td>人民日报</td><td class="num">8</td><td>P0</td></tr>
+          <tr><td>今日头条</td><td class="num">6</td><td>P1</td></tr>
+          <tr><td>视频号 / 短视频</td><td class="num">4</td><td>P2</td></tr>
+          <tr><td>外交部 / 国新办</td><td class="num">3</td><td>P0</td></tr>
+          <tr><td>财政部 / 工信部 / 公安部</td><td class="num">6</td><td>P0–P1</td></tr>
+          <tr><td>环球时报</td><td class="num">2</td><td>P3</td></tr>
+          <tr><td>经济日报 / 央广网</td><td class="num">5</td><td>P1–P2</td></tr>
+        </tbody>
+      </table>
+      <div class="legend">* "收录条数"按 9/6–9/7 周期内早间推送/早报、专题、官方发布等聚合估算。</div>
+    </div>
+
+    <!-- 阅读量排行 -->
+    <div class="card col-6">
+      <h3><span class="ico" style="background:var(--green)">3</span>早间阅读量 TOP 6</h3>
+      <ol class="rank">
+        <li>财政部发行 3000 亿元特别国债、8 家央企增资 3600 亿 — 人民日报 / 新华社</li>
+        <li>"国家反诈 AI"App 正式上线 — 公安部 / 央视新闻</li>
+        <li>卡塔尔首相 9/7–9/8 访华，谈 LNG 长期保供 — 外交部 / 新华社</li>
+        <li>瑞金至延安高铁直达开通 — 央视新闻 / 新华社</li>
+        <li>西藏吉隆泥石流 43 死 519 失联 — 应急管理 / 新华社</li>
+        <li>国新办发布：四部门推动历史经典产业高质量发展 — 国新办 / 工信部</li>
+      </ol>
+    </div>
+
+    <!-- 视频号 / 短视频 -->
+    <div class="card col-6">
+      <h3><span class="ico" style="background:var(--purple)">4</span>视频号 · 短视频高热</h3>
+      <ol class="rank">
+        <li>郑钦文 0–5 落后连赢 7 局逆转凯斯，晋级美网 16 强 — 央视新闻</li>
+        <li>18 岁严子怡 68 米 42 破赛会纪录，钻石联赛总冠军 — 人民日报</li>
+        <li>清华迎来建校以来首位盲人博士生梁江波（41 岁）— 央视新闻</li>
+        <li>"张雪机车"法国车手德比斯 WorldSSP 法国站第 3 名 — 新华社</li>
+        <li>中国女篮 74–70 击败捷克，世界杯 D 组获首胜 — 新华社</li>
+        <li>福鼎茶叶协会销毁近 10 吨"泡水茶"：亏钱不亏口碑 — 今日头条</li>
+      </ol>
+    </div>
+
+    <!-- 两岸 · 国际 -->
+    <div class="card col-12">
+      <h3><span class="ico" style="background:var(--orange)">5</span>两岸 · 国际关系速览</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+        <div style="border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#0f1733">
+          <div style="color:var(--gold);font-weight:600;margin-bottom:6px">两岸</div>
+          <div style="font-size:13px;line-height:1.6;color:#d4dcff">
+            • 第 30 届鲁台经贸洽谈会在山东举办，约 800 位两岸人士参会，主题"乘势奋进'十五五' 鲁台共绘新图景"。<br>
+            • 东部战区司令员杨志斌与美军太平洋司令部司令帕帕罗首次面对面会晤，涉台海方向战区级沟通恢复。<br>
+            • 提醒：台海分歧并未解决，沟通机制意在防止误判、避免局势失控。
+          </div>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#0f1733">
+          <div style="color:var(--accent);font-weight:600;margin-bottom:6px">国际关系</div>
+          <div style="font-size:13px;line-height:1.6;color:#d4dcff">
+            • 卡塔尔首相 9/7–9/8 访华，重点谈 LNG 长期保供。<br>
+            • 伊朗议长称"对等回应"阶段已结束，将宣布霍尔木兹海峡"禁区"。<br>
+            • 美被曝谋划"战后遏制伊朗"战略；俄称别尔哥罗德州遭乌军超百次攻势。<br>
+            • 八国外长联合声明强烈谴责以色列强迫巴勒斯坦人迁离加沙言论。<br>
+            • 联合国大会以压倒性多数通过弃用墨卡托投影决议（美国唯一反对）。
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    本看板由 WorkBuddy 综合公开渠道自动生成 · 数据截至 2026/09/07 09:00（GMT+8）· 仅供内参，内容以官方发布为准
+  </footer>
+</div>
+</body>
+</html>

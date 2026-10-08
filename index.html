@@ -3,376 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>晨间新闻看板 · 2026-10-06（第30期）</title>
+<title>晨间新闻看板 · 2026-10-08（第32期）</title>
 <style>
   :root{
-    --bg:#0b0f17; --bg2:#111726; --card:#161d2e; --card2:#1c2538;
-    --line:#26314a; --txt:#e8edf7; --sub:#9aa7c2; --dim:#6b779a;
-    --p0:#ff4d5e; --p1:#ff9f43; --p2:#4dabf7; --p3:#51cf9a;
-    --gold:#ffd166; --accent:#7c5cff;
+    --bg:#0b0e14; --panel:#121826; --panel2:#161d2e; --line:#243049;
+    --txt:#e6edf6; --sub:#9fb0c8; --dim:#6b7c97;
+    --red:#ff5b6e; --amber:#ffb454; --green:#3ddc97; --blue:#5aa9ff;
+    --p0:#ff5b6e; --p1:#ffb454; --p2:#5aa9ff; --p3:#3ddc97;
+    --chip:#1c2740;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
-    background:radial-gradient(1200px 600px at 80% -10%,#1a2238 0%,var(--bg) 55%);
-    color:var(--txt);line-height:1.6;padding:24px 16px 60px;}
-  .wrap{max-width:1180px;margin:0 auto}
-  /* version banner */
-  .banner{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,#1d2740,#161d2e);
-    border:1px solid var(--line);border-left:4px solid var(--accent);
-    border-radius:10px;padding:10px 16px;font-size:13px;color:var(--sub);margin-bottom:18px}
-  .banner b{color:var(--txt)}
-  .banner .dot{width:8px;height:8px;border-radius:50%;background:var(--p3);box-shadow:0 0 8px var(--p3)}
-  /* header */
-  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:22px}
-  h1{font-size:30px;letter-spacing:1px}
-  h1 .em{color:var(--gold)}
-  .issue{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--sub)}
-  .issue b{color:var(--accent);font-size:15px}
-  .meta{font-size:13px;color:var(--dim);margin-top:6px}
-  /* kpi */
-  .kpi{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:26px}
-  .kpi .c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
-  .kpi .v{font-size:24px;font-weight:700;color:var(--txt)}
-  .kpi .v small{font-size:13px;color:var(--dim);font-weight:400}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#16203a 0,var(--bg) 55%);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 60px}
+  .banner{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:linear-gradient(90deg,#1a2540,#121826);
+    border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:18px;font-size:13px;color:var(--sub)}
+  .banner b{color:var(--blue)}
+  .ver{background:#0e1830;border:1px solid #2b3c63;border-radius:20px;padding:2px 10px;color:#9fd0ff;font-size:12px}
+  h1{font-size:26px;margin:4px 0 2px;letter-spacing:1px}
+  .date{color:var(--sub);font-size:14px;margin-bottom:18px}
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:22px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 14px 12px}
+  .kpi .n{font-size:22px;font-weight:700;color:#fff}
   .kpi .l{font-size:12px;color:var(--sub);margin-top:4px}
-  .kpi .c.k0{border-top:3px solid var(--gold)}
-  .kpi .c.k1{border-top:3px solid var(--p2)}
-  .kpi .c.k2{border-top:3px solid var(--p1)}
-  .kpi .c.k3{border-top:3px solid var(--p3)}
-  .kpi .c.k4{border-top:3px solid var(--accent)}
-  .kpi .c.k5{border-top:3px solid var(--p0)}
-  /* sections */
-  h2{font-size:19px;margin:26px 0 14px;display:flex;align-items:center;gap:10px}
-  h2 .bar{width:5px;height:20px;border-radius:3px;background:var(--accent)}
-  /* topic cards */
-  .tier{margin-bottom:8px}
-  .tier-h{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;
-    padding:3px 12px;border-radius:999px;margin-bottom:12px}
-  .P0{background:rgba(255,77,94,.14);color:var(--p0);border:1px solid rgba(255,77,94,.4)}
-  .P1{background:rgba(255,159,67,.14);color:var(--p1);border:1px solid rgba(255,159,67,.4)}
-  .P2{background:rgba(77,171,247,.14);color:var(--p2);border:1px solid rgba(77,171,247,.4)}
-  .P3{background:rgba(81,207,154,.14);color:var(--p3);border:1px solid rgba(81,207,154,.4)}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .news{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
-    transition:.15s;position:relative;overflow:hidden}
-  .news:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .news .t{font-weight:600;font-size:15px;margin-bottom:6px}
-  .news .d{font-size:13px;color:var(--sub);margin-bottom:10px}
-  .tags{display:flex;flex-wrap:wrap;gap:6px}
-  .tag{font-size:11px;padding:2px 8px;border-radius:6px;border:1px solid var(--line);color:var(--dim)}
-  .tag.cat{color:var(--txt);background:var(--card2);border-color:var(--line)}
-  .tag.src{border-color:rgba(124,92,255,.4);color:#b9a8ff}
-  /* table */
-  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;overflow:hidden;font-size:13px}
-  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
-  th{background:var(--card2);color:var(--sub);font-weight:600}
-  tr:last-child td{border-bottom:none}
-  td .n{color:var(--p2);font-weight:700}
-  /* top list */
-  .top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:center}
-  .rk{width:28px;height:28px;border-radius:8px;background:var(--card2);display:flex;align-items:center;justify-content:center;
-    font-weight:700;color:var(--gold);flex:none;border:1px solid var(--line)}
-  .item .it{flex:1}
-  .item .it .h{font-size:14px;font-weight:600}
-  .item .it .s{font-size:11px;color:var(--dim);margin-top:3px}
-  .heat{flex:none;width:84px;text-align:right}
-  .heat .bar{height:6px;border-radius:4px;background:linear-gradient(90deg,var(--p2),var(--gold));margin-bottom:4px}
-  .heat .n{font-size:11px;color:var(--sub)}
-  /* cross-strait */
-  .xbar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .xc{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);
-    border-radius:12px;padding:14px}
-  .xc .h{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px}
-  .xc ul{list-style:none;font-size:13px;color:var(--sub)}
-  .xc li{padding:5px 0;border-bottom:1px dashed var(--line);position:relative;padding-left:14px}
-  .xc li:before{content:"▸";position:absolute;left:0;color:var(--accent)}
-  .xc li:last-child{border-bottom:none}
-  /* footer */
-  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--dim)}
-  footer a{color:var(--p2);text-decoration:none}
-  .note{background:var(--bg2);border:1px dashed var(--line);border-radius:10px;padding:12px 14px;margin-top:12px;font-size:12px;color:var(--sub)}
-  @media(max-width:860px){.kpi{grid-template-columns:repeat(3,1fr)}.grid,.top,.xbar{grid-template-columns:1fr}}
+  .kpi .s{font-size:11px;color:var(--dim);margin-top:6px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;margin-bottom:20px}
+  section h2{font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+  section h2 .tag{font-size:12px;font-weight:400;color:var(--dim)}
+  .row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .item{background:var(--panel2);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:12px 14px}
+  .item.p0{border-left-color:var(--p0)} .item.p1{border-left-color:var(--p1)}
+  .item.p2{border-left-color:var(--p2)} .item.p3{border-left-color:var(--p3)}
+  .item .ti{font-weight:600;font-size:15px;color:#fff;margin-bottom:4px}
+  .item .de{font-size:13px;color:var(--sub)}
+  .item .me{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+  .c{font-size:11px;border-radius:6px;padding:2px 8px;background:var(--chip);color:#bcd0ee}
+  .c.cat{background:#10223f;color:#7fb6ff}
+  .c.src{background:#1a2233;color:#cdd9ec}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--sub);font-weight:600;background:var(--panel2)}
+  td .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .top6{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .t6{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .t6 .rk{font-size:18px;font-weight:800;color:#fff;min-width:26px}
+  .t6 .rk.g{color:var(--green)} .t6 .rk.b{color:var(--blue)} .t6 .rk.a{color:var(--amber)}
+  .t6 .tt{font-size:14px;color:#fff} .t6 .ts{font-size:12px;color:var(--dim);margin-top:2px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .bul{list-style:none;padding:0;margin:0}
+  .bul li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px;color:var(--sub)}
+  .bul li b{color:#fff}
+  .foot{color:var(--dim);font-size:12px;text-align:center;margin-top:8px}
+  .note{font-size:12px;color:var(--dim);margin-top:8px;font-style:italic}
+  @media(max-width:880px){.kpis{grid-template-columns:repeat(2,1fr)}.row,.top6,.twocol{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- 版本提示条 -->
   <div class="banner">
-    <span class="dot"></span>
-    <span><b>晨间新闻看板 v2026.10.06</b> · 数据基于 2026-10-06 多路公开搜索（央视新闻 / 新华社 / 新华财经 / 人民日报 / 求是网 / 今日头条 / 央广网 / 中国经济网 等）真实新闻整理，未做虚构。· 第30期</span>
+    <span class="ver">版本 v1 · 第32期</span>
+    <span>📅 <b>2026-10-08</b> 星期四 · 寒露</span>
+    <span>数据截至当日晨间公开报道</span>
+    <span>来源：新华社 / 央视 / 人民日报 / 经济日报 / 中新经纬 / 环球网 / 观察者网 / 中国经济网 / 澎湃 / 川观等</span>
+    <span>链接：jinghu0313-dev.github.io/morning-brief</span>
   </div>
 
-  <!-- 头部 -->
-  <header>
-    <div>
-      <h1>晨间新闻<span class="em">看板</span></h1>
-      <div class="meta">2026年10月6日 星期二 · 国庆假期第6天 · 生成时间 09:14 (GMT+8) · 数据口径：当日多源搜索聚合</div>
-    </div>
-    <div class="issue">本期编号 <b>第 30 期</b><br><span style="color:var(--dim)">（2026-09-07 为第1期）</span></div>
-  </header>
+  <h1>晨间新闻看板</h1>
+  <div class="date">2026 年 10 月 8 日 · 第 32 期（2026-09-07 为第 1 期）· 聚焦大陆民生、外交、文化、政治、经济及两岸与国际关系</div>
 
   <!-- KPI 概览 -->
-  <div class="kpi">
-    <div class="c k0"><div class="v">9.17<small> 亿</small></div><div class="l">国庆档票房(元)·连5天破亿</div></div>
-    <div class="c k1"><div class="v">12.44<small> 亿</small></div><div class="l">假期1-4日跨区域流动(人次)</div></div>
-    <div class="c k2"><div class="v">44<small> 个</small></div><div class="l">10月6日高速易堵路段</div></div>
-    <div class="c k3"><div class="v">137.6<small> 点</small></div><div class="l">9月大宗商品价格指数·四年半新高</div></div>
-    <div class="c k4"><div class="v">15<small> 万+</small></div><div class="l">横琴口岸单日客流·刷新纪录</div></div>
-    <div class="c k5"><div class="v">30<small> + 条</small></div><div class="l">今日在追踪真实选题</div></div>
+  <div class="kpis">
+    <div class="kpi"><div class="n">21.44亿</div><div class="l">国庆假期跨区域人员流动量</div><div class="s">交通运输部 · 同比+0.7%</div></div>
+    <div class="kpi"><div class="n">2.07万亿</div><div class="l">前8月医保统筹基金收入</div><div class="s">国家医保局</div></div>
+    <div class="kpi"><div class="n">23个月</div><div class="l">央行连续增持黄金</div><div class="s">9月末7747万盎司</div></div>
+    <div class="kpi"><div class="n">34003亿</div><div class="l">9月末外汇储备(美元)</div><div class="s">外汇局 · 环比-381亿</div></div>
+    <div class="kpi"><div class="n">¥11亿</div><div class="l">国庆档电影总票房</div><div class="s">灯塔专业版</div></div>
+    <div class="kpi"><div class="n">¥1500亿</div><div class="l">中央金融机构注资特别国债(一期)</div><div class="s">财政部 · 5年期</div></div>
   </div>
 
-  <!-- P0 头条 -->
-  <div class="tier">
-    <span class="tier-h P0">P0 · 头条级（国内外最重要）</span>
-    <div class="grid">
-      <div class="news">
-        <div class="t">国庆假期迎返程高峰：10月6日44个高速路段易堵</div>
-        <div class="d">全国交通出行陆续迎来返程客流。交通运输部动态研判，10月6日全国高速公路有44个路段易发拥堵，主要集中在江苏、广东、湖南、安徽、浙江、陕西等省份；公安部交通管理局提醒错峰返程、关注沿途交通与天气。</div>
-        <div class="tags"><span class="tag cat">民生·出行</span><span class="tag src">央视新闻</span><span class="tag src">新华社</span><span class="tag src">交通运输部</span></div>
+  <!-- P0 头条必读 -->
+  <section>
+    <h2>🔴 P0 · 头条必读 <span class="tag">最高优先级，当日核心议题</span></h2>
+    <div class="row">
+      <div class="item p0">
+        <div class="ti">国庆假期跨区域人员流动量预计达 21.44 亿人次</div>
+        <div class="de">交通运输部：国庆 7 天假期全社会跨区域人员流动量预计 21.44 亿人次，日均 3.06 亿，同比+0.7%；中秋国庆拼假连休驱动出游半径扩大，跨省游占比 53%。</div>
+        <div class="me"><span class="c cat">民生·出行</span><span class="c src">交通运输部</span></div>
       </div>
-      <div class="news">
-        <div class="t">菲C-208型机非法侵入黄岩岛领空，南部战区发声</div>
-        <div class="d">针对菲律宾1架C-208型机10月3日非法侵入中国黄岩岛领空，南部战区新闻发言人表示，菲方行为严重侵犯中国主权，正告菲方立即停止侵权挑衅。中国对黄岩岛及其附近海域拥有无可争辩的主权。</div>
-        <div class="tags"><span class="tag cat">主权·外交</span><span class="tag src">央视新闻</span><span class="tag src">南部战区</span></div>
+      <div class="item p0">
+        <div class="ti">10 月 10 日起国内航线燃油附加费上调</div>
+        <div class="de">800 公里（含）以下航线每航段 50 元、800 公里以上 90 元，较调整前分别上涨 10 元、20 元，直接影响假期后返程与商务出行成本。</div>
+        <div class="me"><span class="c cat">民生·出行</span><span class="c src">央视新闻</span></div>
       </div>
-      <div class="news">
-        <div class="t">2026国庆档总票房破9亿元，连续5天单日破亿</div>
-        <div class="d">据网络平台数据，截至10月6日6:45，2026年国庆档（10月1日—10月7日）电影总票房（含预售）突破9.17亿元，连续5天单日票房破亿。《神探之痕迹》《什么意思夫妇》《生化危机：爆发夜》等暂列档期前列。</div>
-        <div class="tags"><span class="tag cat">文化·影视</span><span class="tag src">央视新闻</span><span class="tag src">猫眼专业版</span><span class="tag src">经济日报</span></div>
+      <div class="item p0">
+        <div class="ti">外交部：台湾问题是中国内政，美方应慎重处理</div>
+        <div class="de">10 月 6 日外交部发言人回应称，解决台湾问题完全是中国人自己的事，不容外部干涉；美方应落实中美元首会晤共识、恪守一个中国原则和中美三个联合公报，慎重处理台湾问题，并坚决反对对台军售。</div>
+        <div class="me"><span class="c cat">外交·两岸</span><span class="c src">外交部</span></div>
       </div>
-      <div class="news">
-        <div class="t">巴西总统选举首轮：博索纳罗47.03% vs 卢拉45.16%</div>
-        <div class="d">巴西高等选举法院公布首轮投票最终计票结果，弗拉维奥·博索纳罗得票率47.03%居首，卢拉45.16%居次；无人过半，两人将于10月25日进入第二轮对决。</div>
-        <div class="tags"><span class="tag cat">国际·政治</span><span class="tag src">央视新闻</span><span class="tag src">巴西高等选举法院</span></div>
+      <div class="item p0">
+        <div class="ti">王毅将同访华的俄总统助理帕特鲁舍夫会谈</div>
+        <div class="de">外交部 10 月 7 日宣布，俄罗斯总统助理、海事委员会主席帕特鲁舍夫将于 10 月 8 日至 13 日访问中国，中共中央政治局委员、中央外办主任王毅将与其会谈交流。</div>
+        <div class="me"><span class="c cat">外交</span><span class="c src">外交部</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- P1 重点 -->
-  <div class="tier">
-    <span class="tier-h P1">P1 · 重点选题</span>
-    <div class="grid">
-      <div class="news">
-        <div class="t">9月中国大宗商品价格指数137.6点，创四年半新高</div>
-        <div class="d">中物联发布9月份中国大宗商品价格指数（CBPI）为137.6点，环比上涨4.1%、同比上涨22.9%，创2022年3月以来新高。能源、化工价格指数环比分别上涨14.8%和13.7%。</div>
-        <div class="tags"><span class="tag cat">经济·大宗商品</span><span class="tag src">新华财经</span><span class="tag src">中物联</span></div>
+  <!-- P1 重要 -->
+  <section>
+    <h2>🟠 P1 · 重要议题 <span class="tag">政策、经济与国际主线</span></h2>
+    <div class="row">
+      <div class="item p1">
+        <div class="ti">财政部拟发行 1500 亿元中央金融机构注资特别国债（一期）</div>
+        <div class="de">5 年期固定利率附息债，竞争性招标面值总额 1500 亿元，10 月 9 日起计息、每年付息，不追加甲类成员投标。</div>
+        <div class="me"><span class="c cat">经济·财政</span><span class="c src">财政部</span></div>
       </div>
-      <div class="news">
-        <div class="t">华为与高通达成多年期广泛专利许可协议</div>
-        <div class="d">10月5日华为与高通宣布达成一项多年期、广泛专利许可协议，涵盖双方在5G、计算、人工智能和网络等多个技术领域的专利交叉许可；高通将收购华为在计算、AI、网络等领域的部分美国专利。</div>
-        <div class="tags"><span class="tag cat">科技·通信</span><span class="tag src">华为</span><span class="tag src">新华社</span><span class="tag src">今日头条</span></div>
+      <div class="item p1">
+        <div class="ti">央行连续第 23 个月增持黄金</div>
+        <div class="de">9 月末黄金储备 7747 万盎司，环比增加 74 万盎司；同期外汇储备 34003 亿美元，环比降 381 亿美元（-1.11%）。</div>
+        <div class="me"><span class="c cat">经济·金融</span><span class="c src">央行 / 外汇局</span></div>
       </div>
-      <div class="news">
-        <div class="t">诺贝尔生理学或医学奖：光遗传学发现</div>
-        <div class="d">瑞典卡罗琳医学院宣布，将2026年诺贝尔生理学或医学奖授予卡尔·戴塞罗思、彼得·黑格曼和格奥尔格·内格尔三名科学家，表彰其在光门控离子通道和光遗传学方面的发现。</div>
-        <div class="tags"><span class="tag cat">国际·科技</span><span class="tag src">新华社</span><span class="tag src">卡罗琳医学院</span></div>
+      <div class="item p1">
+        <div class="ti">大秦铁路开启 20 天秋季集中修</div>
+        <div class="de">我国西煤东运主通道开启秋修，夯实冬季电煤保供运输基础；该线年运煤约 4 亿吨，承担各大电网、钢企煤炭保供任务。</div>
+        <div class="me"><span class="c cat">经济·基建</span><span class="c src">央视网</span></div>
       </div>
-      <div class="news">
-        <div class="t">新修订《婚姻登记条例》实施，"旅行+领证"走红</div>
-        <div class="d">新修订的《婚姻登记条例》实施以来，多地推进景区结婚登记，越来越多年轻人开启"旅行+领证"新模式，将婚姻登记与文旅体验结合。</div>
-        <div class="tags"><span class="tag cat">民生·社会</span><span class="tag src">人民日报</span><span class="tag src">央视新闻</span></div>
+      <div class="item p1">
+        <div class="ti">人民日报：携手开创全球人工智能普惠合作新未来</div>
+        <div class="de">阐释 AI 国际合作主张，提出未来 5 年面向发展中国家提供 5000 个 AI 专题研修名额，推动气象智能预警方案“妈祖”在 30 国落地。</div>
+        <div class="me"><span class="c cat">文化·外交</span><span class="c src">人民日报</span></div>
       </div>
-      <div class="news">
-        <div class="t">工信部等七部门发布《新型电池产业"十五五"规划》</div>
-        <div class="d">工业和信息化部等七部门发布《新型电池产业发展"十五五"规划》，"加快全链条创新发展"位列五方面重点任务之首，部署丰富高端电池产品供给、加强新型电池产品创新。</div>
-        <div class="tags"><span class="tag cat">政策·产业</span><span class="tag src">新华社</span></div>
+      <div class="item p1">
+        <div class="ti">IMF：高油价或持续至 2027 年</div>
+        <div class="de">IMF 总裁格奥尔基耶娃在新加坡表示，即便海湾地区战事很快结束，高能源价格仍可能持续一段时间，预计高油价将持续至 2027 年。</div>
+        <div class="me"><span class="c cat">国际·经济</span><span class="c src">新华社 / IMF</span></div>
       </div>
-      <div class="news">
-        <div class="t">特朗普组建"超级智能工作组"，美拟与北京建AI事故通报机制</div>
-        <div class="d">美国总统特朗普在社交媒体发文，宣布组建"超级智能工作组"并任命国家情报总监杰伊·克莱顿等领导团队；美方同时准备向北京提出正式通报程序，以便严重AI事故时保持沟通。</div>
-        <div class="tags"><span class="tag cat">国际·科技外交</span><span class="tag src">新华社</span><span class="tag src">VOA</span></div>
+      <div class="item p1">
+        <div class="ti">人民日报头版：以文化滋养精神家园 / 从太空“行李箱”看中国航天 70 年</div>
+        <div class="de">头版聚焦文化建设与航天成就，并刊发人民时评《可敬的中国 灿烂的明天》，以亚运会、世界杯“含‘中’量”透视中国全球角色转变。</div>
+        <div class="me"><span class="c cat">文化·政治</span><span class="c src">人民日报</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- P2 关注 -->
-  <div class="tier">
-    <span class="tier-h P2">P2 · 关注选题</span>
-    <div class="grid">
-      <div class="news">
-        <div class="t">假期前4天跨区域人员流动量12.44亿人次</div>
-        <div class="d">10月4日全社会跨区域人员流动量30539万人次（同比+1.3%）；国庆假期前4天（10月1日至4日）跨区域人员流动量12.44亿人次，与去年同期基本持平。</div>
-        <div class="tags"><span class="tag cat">民生·出行</span><span class="tag src">新华社</span><span class="tag src">人民日报</span><span class="tag src">交通运输部</span></div>
+  <section>
+    <h2>🔵 P2 · 重点关注 <span class="tag">民生、科技、历史与社会</span></h2>
+    <div class="row">
+      <div class="item p2">
+        <div class="ti">前 8 月医保统筹基金收入 2.07 万亿、支出 1.55 万亿</div>
+        <div class="de">国家医保局：基本医疗保险（含生育保险）统筹基金运行平稳，收入 20727.72 亿元、支出 15504.14 亿元。</div>
+        <div class="me"><span class="c cat">民生·医保</span><span class="c src">国家医保局</span></div>
       </div>
-      <div class="news">
-        <div class="t">北京两机场今年旅客吞吐量破1亿人次</div>
-        <div class="d">截至10月4日，北京首都国际机场、北京大兴国际机场今年旅客吞吐量已突破1亿人次，较去年提前17天达成。</div>
-        <div class="tags"><span class="tag cat">经济·民航</span><span class="tag src">新华社</span><span class="tag src">首都机场集团</span></div>
+      <div class="item p2">
+        <div class="ti">国庆消费市场总体平稳，以旧换新带动 334.8 亿元</div>
+        <div class="de">商务部：10 月 1—6 日以旧换新惠及 639.2 万人次，带动销售额 334.8 亿元；78 个步行街客流量、营业额同比+2.5%、+4.7%。</div>
+        <div class="me"><span class="c cat">经济·消费</span><span class="c src">商务部</span></div>
       </div>
-      <div class="news">
-        <div class="t">横琴口岸单日客流破15万人次，刷新启用以来新高</div>
-        <div class="d">10月4日横琴口岸出入境客流突破15万人次，刷新口岸启用以来单日客流历史新高；今年以来单日客流已多次超14万人次，琴澳往来热度持续攀升。</div>
-        <div class="tags"><span class="tag cat">粤港澳·两岸往来</span><span class="tag src">新华社</span><span class="tag src">珠海边检</span></div>
+      <div class="item p2">
+        <div class="ti">全国秋粮收获已过四成；水稻三维时空细胞图谱登《细胞》</div>
+        <div class="de">农业农村部农情调度显示秋粮收获进度过四成；我国团队首次构建覆盖水稻全生育期三维时空细胞图谱，6 日在线发表于《细胞》。</div>
+        <div class="me"><span class="c cat">民生·科技</span><span class="c src">农业农村部 / 科研团队</span></div>
       </div>
-      <div class="news">
-        <div class="t">哈得-富满油田采出油气突破2600万吨，取8080米岩芯</div>
-        <div class="d">我国沙漠最大油田哈得-富满油田已从6000米之下采出油气突破2600万吨；震探1井成功取出地下8080米深处的岩芯（约5亿年），系我国首次在塔里木盆地西北缘8000米以深取出岩芯。</div>
-        <div class="tags"><span class="tag cat">科技·能源</span><span class="tag src">央视新闻</span><span class="tag src">中国石油</span></div>
+      <div class="item p2">
+        <div class="ti">南京大屠杀幸存者郭秀兰离世，在册在世幸存者仅存 20 位</div>
+        <div class="de">纪念馆消息：幸存者郭秀兰 10 月 7 日离世，享年 94 岁；截至目前登记在册在世的幸存者仅剩 20 位。</div>
+        <div class="me"><span class="c cat">历史·民生</span><span class="c src">纪念馆 / 新华社</span></div>
       </div>
-      <div class="news">
-        <div class="t">重庆整治"摩托落地签"，约谈经营团队</div>
-        <div class="d">针对总台报道重庆摩托车商拍"落地签"存在安全隐患，重庆当日启动专项整治，南岸区明确摩托车固定停靠区域、经营时段与规范，并对经营团队进行约谈。</div>
-        <div class="tags"><span class="tag cat">民生·监管</span><span class="tag src">央视新闻</span><span class="tag src">重庆</span></div>
+      <div class="item p2">
+        <div class="ti">2026 年诺贝尔化学奖揭晓</div>
+        <div class="de">多源报道，2026 年诺贝尔化学奖于 10 月公布（以诺贝尔奖官方公告为准），科技界持续关注。</div>
+        <div class="me"><span class="c cat">国际·科技</span><span class="c src">多源</span></div>
       </div>
-      <div class="news">
-        <div class="t">我国牵头7项天然气国际标准获批立项</div>
-        <div class="d">国家市场监督管理总局消息，国际标准化组织日前批准由我国牵头的7项天然气国际标准全部立项。</div>
-        <div class="tags"><span class="tag cat">科技·标准</span><span class="tag src">新华社</span></div>
+      <div class="item p2">
+        <div class="ti">城市公园国庆接待超 2.1 亿人次、带动消费超 52 亿元</div>
+        <div class="de">住建部：假期各地城市公园举办节庆花展、文化展演、非遗体验等活动 1.1 万场，接待游客超 2.1 亿人次。</div>
+        <div class="me"><span class="c cat">民生·文旅</span><span class="c src">住建部</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- P3 其他 -->
-  <div class="tier">
-    <span class="tier-h P3">P3 · 民生 / 文化 / 科技 / 其他</span>
-    <div class="grid">
-      <div class="news">
-        <div class="t">重庆酉阳盗矿案：封闭矿洞7死，21人被抓获</div>
-        <div class="d">重庆酉阳土家族苗族自治县公安局通报，当地查获一起违法盗矿案件，21名盗矿人员被抓获；封闭废弃矿洞内发现7名死者，初步调查系降雨引发矿洞突发涨水溺亡，案件进一步侦办中。</div>
-        <div class="tags"><span class="tag cat">社会·安全</span><span class="tag src">重庆酉阳公安</span><span class="tag src">央视</span></div>
+  <!-- P3 补充 -->
+  <section>
+    <h2>🟢 P3 · 补充选题 <span class="tag">就业、文旅、金融与国际动态</span></h2>
+    <div class="row">
+      <div class="item p3">
+        <div class="ti">百日千万招聘专项行动推 4 个线上专场</div>
+        <div class="de">10 月 5—10 日推出航空航天及国防装备、教育培训、文娱、快递 4 个专场，2100 余家单位参与、招聘需求 4.7 万余人次。</div>
+        <div class="me"><span class="c cat">民生·就业</span><span class="c src">人社部</span></div>
       </div>
-      <div class="news">
-        <div class="t">东航"空姐下跪"事件：中国航协回应，东航已报案</div>
-        <div class="d">针对东航"空姐下跪"事件，中国航协发文回应称已对当事乘务员开展心理疏导与关怀支持；目前东方航空已完成证据固定并正式报案。</div>
-        <div class="tags"><span class="tag cat">社会·服务</span><span class="tag src">中国航协</span><span class="tag src">东方航空</span></div>
+      <div class="item p3">
+        <div class="ti">央视文博日历：白玉荷叶螃蟹</div>
+        <div class="de">文博科普产品解析深秋文物“白玉荷叶螃蟹”，古以蟹甲借喻“三甲”、莲（荷）蟹组合寓意“连生一甲”。</div>
+        <div class="me"><span class="c cat">文化</span><span class="c src">央视新闻</span></div>
       </div>
-      <div class="news">
-        <div class="t">郑钦文中网女单第三轮2-1胜布兹科娃，进16强</div>
-        <div class="d">2026年中国网球公开赛女单第三轮，中国选手郑钦文以总比分2-1战胜赛会18号种子、捷克选手布兹科娃，时隔两年再进中网16强。</div>
-        <div class="tags"><span class="tag cat">体育</span><span class="tag src">央视新闻</span></div>
+      <div class="item p3">
+        <div class="ti">“上 3 休 1 再上 5 休 2”出勤提醒</div>
+        <div class="de">国庆结束、今年法定节假日全部结束，下一个假期需等到 2027 年元旦，提醒调整作息与闹钟。</div>
+        <div class="me"><span class="c cat">民生·提醒</span><span class="c src">中国劳动保障报</span></div>
       </div>
-      <div class="news">
-        <div class="t">纪录片《缅北电诈覆灭纪实》央视首播</div>
-        <div class="d">由公安部与中央广播电视总台联合摄制的三集纪录片《缅北电诈覆灭纪实》，10月5日至7日每晚18点在央视综合频道首播，当晚央视新闻频道21:30重播。</div>
-        <div class="tags"><span class="tag cat">文化·纪实</span><span class="tag src">央视新闻</span><span class="tag src">公安部</span></div>
+      <div class="item p3">
+        <div class="ti">恒生科技指数将进行六项改革；前三季度港股 115 家 IPO</div>
+        <div class="de">恒生指数公司将于 12 月实施六大科技主题修订；Wind 显示前三季度港股 115 家企业 IPO、募资 3855.66 亿港元，全球仅次于纳斯达克。</div>
+        <div class="me"><span class="c cat">经济·金融</span><span class="c src">恒生指数公司 / Wind</span></div>
       </div>
-      <div class="news">
-        <div class="t">人民日报头版"流动中国 蓬勃向上"：落地租车同比+20%</div>
-        <div class="d">《人民日报》10月6日头版聚焦"流动中国 蓬勃向上"：国庆假期落地租车出行量预计同比增长超20%，已实现200万人次机场和一类高铁站枢纽"租车站点"全覆盖。</div>
-        <div class="tags"><span class="tag cat">民生·出行</span><span class="tag src">人民日报</span><span class="tag src">交通运输部</span></div>
+      <div class="item p3">
+        <div class="ti">国际能源署：成员国同意加快落实石油储备释放</div>
+        <div class="de">若此前承诺尚未释放的储备全部投放，预计还可释放约 1 亿桶石油，以平抑市场供给。</div>
+        <div class="me"><span class="c cat">国际·能源</span><span class="c src">新华社 / IEA</span></div>
       </div>
-      <div class="news">
-        <div class="t">网文乱象治理：人民锐评"谁来管管现在的小说"</div>
-        <div class="d">"谁来管管现在的小说"话题登上热搜，人民锐评指出此类乱象治理不能只靠网友吐槽，平台细化审核标准、行业重拾耐心、监管部门完善规则三者缺一不可。</div>
-        <div class="tags"><span class="tag cat">文化·治理</span><span class="tag src">人民日报</span></div>
+      <div class="item p3">
+        <div class="ti">美国拟对国际学生 OPT 项目征高额费用</div>
+        <div class="de">美土安全部拟议规则：学校为每名学生首次申请 OPT 需付 7 万美元、延期再付 3 万美元，系收紧留学生政策最新举动。</div>
+        <div class="me"><span class="c cat">国际·教育</span><span class="c src">新华社 / 美国土安全部</span></div>
       </div>
-      <div class="news">
-        <div class="t">小城慢游/奔县游出圈，县域旅游预订+42%</div>
-        <div class="d">以"奔县游"为代表的小城慢游再出圈，县域旅游产品预订热度同比上涨42%；红色老区实景演绎、无人机光影秀、非遗打铁花等业态重构国内旅游格局。</div>
-        <div class="tags"><span class="tag cat">文化·文旅</span><span class="tag src">央广网</span><span class="tag src">今日头条</span></div>
+      <div class="item p3">
+        <div class="ti">印度央行加息 25bp 至 5.50%</div>
+        <div class="de">印度储备银行宣布上调回购利率 25 个基点至 5.50%，为 2023 年 2 月以来首次加息。</div>
+        <div class="me"><span class="c cat">国际·金融</span><span class="c src">新华社</span></div>
       </div>
-      <div class="news">
-        <div class="t">西班牙提前举行议会选举，11月29日投票</div>
-        <div class="d">西班牙首相桑切斯在首相府发表声明，宣布提前举行议会选举，投票将于11月29日举行。</div>
-        <div class="tags"><span class="tag cat">国际·政治</span><span class="tag src">新华社</span></div>
-      </div>
-      <div class="news">
-        <div class="t">驻日美军涉嫌抢劫杀人案，冲绳知事递交抗议书</div>
-        <div class="d">就驻日美军涉嫌抢劫杀人案，冲绳县知事向美国海军陆战队第三远征军及驻日美国海军陆战队司令递交了抗议书。</div>
-        <div class="tags"><span class="tag cat">国际·外交</span><span class="tag src">央视新闻</span></div>
-      </div>
-      <div class="news">
-        <div class="t">福岛第24轮核污染水排海启动</div>
-        <div class="d">日本东京电力公司启动福岛第一核电站新一轮核污染水排海，这是2026财年第6轮、总计第24轮排海。</div>
-        <div class="tags"><span class="tag cat">国际·环境</span><span class="tag src">央视新闻</span></div>
-      </div>
-      <div class="news">
-        <div class="t">俄罗斯将外汇和黄金购买量提至9月5倍</div>
-        <div class="d">俄财政部宣布10月7日至11月6日将外汇和黄金购买量提高至9月的5倍，为此拨款2794.2亿卢布，日均约127亿卢布，依据预算规则将额外油气收入纳入国家福利基金。</div>
-        <div class="tags"><span class="tag cat">国际·经济</span><span class="tag src">今日头条</span><span class="tag src">俄财政部</span></div>
-      </div>
-      <div class="news">
-        <div class="t">伦敦大面积停电，疑地下电缆故障</div>
-        <div class="d">当地时间10月5日，英国伦敦中部、东部和金融城大片区域停电，据悉原因是地下电缆发生故障。</div>
-        <div class="tags"><span class="tag cat">国际·社会</span><span class="tag src">央视新闻</span></div>
+      <div class="item p3">
+        <div class="ti">国庆档电影总票房突破 11 亿元</div>
+        <div class="de">据网络平台数据，2026 年国庆档（10 月 1—7 日）电影总票房（含预售）突破 11 亿元。</div>
+        <div class="me"><span class="c cat">文化·影视</span><span class="c src">人民日报 / 灯塔</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- 来源矩阵表 -->
-  <h2><span class="bar"></span>来源矩阵表（按贡献选题数）</h2>
-  <table>
-    <thead><tr><th>来源</th><th>类型</th><th>主要覆盖选题</th><th>贡献条数</th></tr></thead>
-    <tbody>
-      <tr><td>央视新闻（早啊新闻来了）</td><td>中央媒体</td><td>返程高峰、黄岩岛、国庆档、横琴口岸、哈得-富满、重庆摩托、酉阳盗矿、郑钦文、福岛、伦敦</td><td class="n">12+</td></tr>
-      <tr><td>新华社 / 新华财经</td><td>中央媒体</td><td>流动中国、大宗商品价格指数、华为高通、诺奖、新型电池规划、天然气标准、北京两机场</td><td class="n">9+</td></tr>
-      <tr><td>人民日报 / 人民网</td><td>中央媒体</td><td>婚姻登记条例、流动中国、网文治理、头版头条</td><td class="n">5+</td></tr>
-      <tr><td>求是网早报</td><td>中央媒体</td><td>黄岩岛、诺奖、国庆档、巴西大选、新型电池、西班牙大选、特朗普AI工作组</td><td class="n">7+</td></tr>
-      <tr><td>今日头条 / 中国证券报</td><td>财经媒体</td><td>国庆档票房、深圳IPO、俄罗斯购汇金、华为高通</td><td class="n">4+</td></tr>
-      <tr><td>央广网</td><td>中央媒体</td><td>小城慢游/奔县游出圈</td><td class="n">1</td></tr>
-      <tr><td>中国经济网</td><td>财经媒体</td><td>民生为大、流动中国</td><td class="n">2+</td></tr>
-      <tr><td>VOA / 美中关系报道</td><td>国际媒体</td><td>美中AI事故通报机制、特朗普超级智能工作组</td><td class="n">2</td></tr>
-      <tr><td>重庆酉阳公安 / 中国航协 / 东方航空</td><td>机构发布</td><td>酉阳盗矿案、东航空姐下跪事件</td><td class="n">2</td></tr>
-    </tbody>
-  </table>
+  <section>
+    <h2>🗂️ 来源矩阵表 <span class="tag">本次看板信源覆盖</span></h2>
+    <table>
+      <thead><tr><th>来源</th><th>类型</th><th>主要贡献选题</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:#ff5b6e"></span>央视新闻 / 央视网</td><td>广电央媒</td><td>燃油附加费上调、大秦铁路秋修、文博日历、寒露</td><td>P0 / P1 / P3</td></tr>
+        <tr><td><span class="dot" style="background:#ffb454"></span>新华社</td><td>通讯社</td><td>IMF 高油价、IEA 释储、OPT 收费、印度加息、在册幸存者</td><td>P1 / P2 / P3</td></tr>
+        <tr><td><span class="dot" style="background:#5aa9ff"></span>人民日报</td><td>党报</td><td>头版文化建设/航天、AI 普惠合作、信访为民、消费平稳</td><td>P1 / P2</td></tr>
+        <tr><td><span class="dot" style="background:#3ddc97"></span>经济日报 / 中国经济网</td><td>财经</td><td>财经早餐（秋粮、巴彦油田、外汇储备、医保数据）</td><td>P2</td></tr>
+        <tr><td><span class="dot" style="background:#c08bff"></span>中新经纬</td><td>财经</td><td>《人民日报》头版主要内容摘要</td><td>P1</td></tr>
+        <tr><td><span class="dot" style="background:#ff8f6b"></span>环球网 / 观察者网</td><td>国际时政</td><td>美日“利剑”军演、中美元首会晤后对台军售走向</td><td>P0 / P3（两岸国际）</td></tr>
+        <tr><td><span class="dot" style="background:#7fd0ff"></span>澎湃 / 川观 / 中国劳动保障报</td><td>综合/地方</td><td>财经早餐、早 8 点、招聘专场、出勤提醒</td><td>P2 / P3</td></tr>
+        <tr><td><span class="dot" style="background:#9fb0c8"></span>部委与权威机构</td><td>官方</td><td>交通运输部、财政部、央行、外汇局、国家医保局、住建部、外交部</td><td>全层级</td></tr>
+      </tbody>
+    </table>
+    <div class="note">说明：以上选题均来自当日公开报道检索结果，未做虚构；部分国际数据为外媒/机构口径，已注明来源。</div>
+  </section>
 
-  <!-- 早间阅读量 TOP6 -->
-  <h2><span class="bar"></span>早间阅读量 TOP6（综合多源覆盖热度）</h2>
-  <div class="top">
-    <div class="item"><div class="rk">1</div><div class="it"><div class="h">国庆返程高峰·44个高速易堵+流动12.44亿</div><div class="s">央视/新华社/交通运输部/人民日报</div></div><div class="heat"><div class="bar" style="width:98%"></div><div class="n">热度 98</div></div></div>
-    <div class="item"><div class="rk">2</div><div class="it"><div class="h">国庆档票房破9亿·连续5天破亿</div><div class="s">央视/猫眼/经济日报/今日头条</div></div><div class="heat"><div class="bar" style="width:94%"></div><div class="n">热度 94</div></div></div>
-    <div class="item"><div class="rk">3</div><div class="it"><div class="h">菲C-208侵入黄岩岛领空·南部战区发声</div><div class="s">央视/南部战区</div></div><div class="heat"><div class="bar" style="width:92%"></div><div class="n">热度 92</div></div></div>
-    <div class="item"><div class="rk">4</div><div class="it"><div class="h">巴西总统选举首轮·博索纳罗vs卢拉</div><div class="s">央视/巴西高等选举法院</div></div><div class="heat"><div class="bar" style="width:88%"></div><div class="n">热度 88</div></div></div>
-    <div class="item"><div class="rk">5</div><div class="it"><div class="h">华为与高通达成多年期专利许可协议</div><div class="s">华为/新华社/今日头条</div></div><div class="heat"><div class="bar" style="width:86%"></div><div class="n">热度 86</div></div></div>
-    <div class="item"><div class="rk">6</div><div class="it"><div class="h">诺贝尔生理学或医学奖·光遗传学</div><div class="s">新华社/卡罗琳医学院</div></div><div class="heat"><div class="bar" style="width:84%"></div><div class="n">热度 84</div></div></div>
-  </div>
-
-  <!-- 视频号高热 TOP6 -->
-  <h2><span class="bar"></span>视频号高热 TOP6（视频向选题）</h2>
-  <div class="top">
-    <div class="item"><div class="rk">1</div><div class="it"><div class="h">国庆返程实况·高速拥堵与异地租车自驾</div><div class="s">出行实况类内容</div></div><div class="heat"><div class="bar" style="width:92%"></div><div class="n">热度 92</div></div></div>
-    <div class="item"><div class="rk">2</div><div class="it"><div class="h">国庆档电影高光·票房破9亿</div><div class="s">影视类内容</div></div><div class="heat"><div class="bar" style="width:86%"></div><div class="n">热度 86</div></div></div>
-    <div class="item"><div class="rk">3</div><div class="it"><div class="h">《缅北电诈覆灭纪实》纪录片首播</div><div class="s">纪实类内容</div></div><div class="heat"><div class="bar" style="width:82%"></div><div class="n">热度 82</div></div></div>
-    <div class="item"><div class="rk">4</div><div class="it"><div class="h">郑钦文中网进16强·时隔两年</div><div class="s">体育类内容</div></div><div class="heat"><div class="bar" style="width:78%"></div><div class="n">热度 78</div></div></div>
-    <div class="item"><div class="rk">5</div><div class="it"><div class="h">小城慢游出圈·无人机光影秀与非遗打铁花</div><div class="s">文旅类内容</div></div><div class="heat"><div class="bar" style="width:74%"></div><div class="n">热度 74</div></div></div>
-    <div class="item"><div class="rk">6</div><div class="it"><div class="h">东航空姐下跪事件·航协回应</div><div class="s">社会类内容</div></div><div class="heat"><div class="bar" style="width:68%"></div><div class="n">热度 68</div></div></div>
-  </div>
+  <!-- TOP6 双栏 -->
+  <section>
+    <h2>🔥 早间热点 TOP6 <span class="tag">依据公开报道热度的综合排序（非精确阅读量）</span></h2>
+    <div class="twocol">
+      <div>
+        <h3 style="font-size:14px;color:var(--sub);margin:0 0 8px">早间阅读量 TOP6</h3>
+        <div class="top6">
+          <div class="t6"><div class="rk a">1</div><div><div class="tt">国庆假期跨区域人员流动 21.44 亿人次</div><div class="ts">出行大盘 · 交通运输部</div></div></div>
+          <div class="t6"><div class="rk a">2</div><div><div class="tt">国内航线燃油附加费 10 日起上调</div><div class="ts">返程成本 · 央视</div></div></div>
+          <div class="t6"><div class="rk a">3</div><div><div class="tt">“抢号软件”案件引关注</div><div class="ts">法治民生 · 今日头条</div></div></div>
+          <div class="t6"><div class="rk a">4</div><div><div class="tt">霍尔木兹海峡船员薪酬暴涨数倍</div><div class="ts">国际航运 · 腾讯搜一搜</div></div></div>
+          <div class="t6"><div class="rk a">5</div><div><div class="tt">王毅将同帕特鲁舍夫会谈</div><div class="ts">外交 · 外交部</div></div></div>
+          <div class="t6"><div class="rk a">6</div><div><div class="tt">2026 诺贝尔化学奖揭晓</div><div class="ts">科技热点 · 多源</div></div></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;color:var(--sub);margin:0 0 8px">视频号高热 TOP6</h3>
+        <div class="top6">
+          <div class="t6"><div class="rk b">1</div><div><div class="tt">寒露至·秋意浓</div><div class="ts">央视《早啊!新闻来了》</div></div></div>
+          <div class="t6"><div class="rk b">2</div><div><div class="tt">文博日历：白玉荷叶螃蟹</div><div class="ts">央视文博科普</div></div></div>
+          <div class="t6"><div class="rk b">3</div><div><div class="tt">郑钦文中网晋级八强</div><div class="ts">体育 · 川观</div></div></div>
+          <div class="t6"><div class="rk b">4</div><div><div class="tt">长春大冬会倒计时 100 天·火炬奖牌发布</div><div class="ts">体育 · 新华社</div></div></div>
+          <div class="t6"><div class="rk b">5</div><div><div class="tt">国庆出游热·成都在多榜居首</div><div class="ts">文旅 · 川观/同程</div></div></div>
+          <div class="t6"><div class="rk b">6</div><div><div class="tt">大秦铁路秋修·西煤东运保供</div><div class="ts">基建 · 央视网</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="note">排序依据：多源报道频次、央媒置顶与平台热榜重合度综合判断；精确阅读量/播放量以各平台后台为准，此处为话题热度排名。</div>
+  </section>
 
   <!-- 两岸国际速览 -->
-  <h2><span class="bar"></span>两岸 · 国际速览</h2>
-  <div class="xbar">
-    <div class="xc">
-      <div class="h">两岸</div>
-      <ul>
-        <li>国台办发言人强调台湾问题是"核心利益中的核心"，指出赖清德当局"倚外谋独""以武谋独"，"台独"是绝路、外人靠不住</li>
-        <li>解放军舰机台海周边活动日趋常态化，2026年巡航从"行动"变为日常战备"状态"，体系化运转</li>
-        <li>日本首相高市早苗在国会政策演讲中称中国为"重要邻国"，承诺推进对话（涉台表态曾引发中方交涉）</li>
-        <li>澳前总理陆克文称2028年是台海局势"尤其危险的一年"，强调有效威慑仍是避免冲突关键</li>
-      </ul>
+  <section>
+    <h2>🌐 两岸 · 国际速览 <span class="tag">事实性要点汇总</span></h2>
+    <div class="twocol">
+      <div>
+        <h3 style="font-size:14px;color:var(--p2);margin:0 0 6px">两岸</h3>
+        <ul class="bul">
+          <li><b>外交部立场：</b>台湾问题是中国内政，中方坚决反对美对台军售，要求美方慎重处理。</li>
+          <li><b>中美元首会晤后：</b>关于 140 亿美元“对台军售”的暂停状态延续，被解读为短期内难有新军售获批。</li>
+          <li><b>美日“利剑”军演：</b>计划 10 月下旬在与那国岛（距台约 110 公里）部署远程攻击性武器，专家指暴露武力介入台海企图。</li>
+          <li><b>南海：</b>外交部指菲方飞机船只擅闯中国管辖海空域，中方依法应对，正告菲方停止侵权挑衅。</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:14px;color:var(--blue);margin:0 0 6px">国际</h3>
+        <ul class="bul">
+          <li><b>能源：</b>IMF 预计高油价持续至 2027 年；IEA 成员国同意加快释储，预计还可释放约 1 亿桶。</li>
+          <li><b>美国：</b>拟对国际学生 OPT 项目征高额费用（首次 7 万美元、延期 3 万美元）；特朗普宣布投资 66 亿美元新建造船厂。</li>
+          <li><b>中东：</b>沙特两机场遭袭致 3 死 36 伤；胡塞武装称向沙特主导联军发射 11 枚弹道导弹；伊朗称将关闭霍尔木兹海峡内少数“非法航道”。</li>
+          <li><b>其他：</b>印度央行加息 25bp 至 5.50%；日本外汇储备连降 5 月至约 1.18 万亿美元；乌克兰愿参加乌俄美三方和平会谈；7 国明确申办 2036 年奥运会。</li>
+        </ul>
+      </div>
     </div>
-    <div class="xc">
-      <div class="h">国际关系 · 中东</div>
-      <ul>
-        <li>也门新一轮军事冲突升级，胡塞武装警告国际航司停止运营经沙特领空航线</li>
-        <li>霍尔木兹海峡有船只遇袭，但9月最后一周中东原油出口有4天超伊朗战事前水平</li>
-        <li>美拟与北京建立"超级智能/AI事故"沟通渠道，激烈技术竞争中测试安全合作空间</li>
-        <li>福岛第一核电站启动第24轮核污染水排海</li>
-      </ul>
-    </div>
-    <div class="xc">
-      <div class="h">国际 · 其他</div>
-      <ul>
-        <li>巴西总统选举首轮：博索纳罗47.03%、卢拉45.16%，10月25日第二轮对决</li>
-        <li>西班牙首相宣布提前举行议会选举，投票定于11月29日</li>
-        <li>驻日美军涉嫌抢劫杀人案，冲绳县知事递交抗议书</li>
-        <li>伦敦大面积停电（疑地下电缆故障）；俄将外汇黄金购买量提至9月5倍</li>
-      </ul>
-    </div>
-  </div>
+  </section>
 
-  <!-- 方法说明 -->
-  <div class="note">
-    <b>数据与方法说明：</b>本看板全部选题均来自 2026-10-06 多路公开搜索（WebSearch，freshness=d1）的真实新闻，未做任何虚构。TOP6 榜单的"热度"为基于多源覆盖频次的<b>定性综合指数</b>（非平台精确阅读量/播放量），仅作关注度参考；如与具体平台后台数据存在差异，以各平台官方数据为准。两岸相关表述遵循一个中国原则。
-  </div>
-
-  <footer>
-    晨间新闻看板 · 第30期 · 2026-10-06 · 在线版：<a href="https://jinghu0313-dev.github.io/morning-brief/">jinghu0313-dev.github.io/morning-brief/</a><br>
-    信息来源：央视新闻、新华社、新华财经、人民日报、求是网、今日头条、央广网、中国经济网、VOA、重庆酉阳公安、中国航协、东方航空 等公开报道。
-  </footer>
-
+  <div class="foot">晨间新闻看板 · 第 32 期 · 数据基于 2026-10-08 当日公开报道检索，仅供概览参考 · 链接：https://jinghu0313-dev.github.io/morning-brief/</div>
 </div>
 </body>
 </html>

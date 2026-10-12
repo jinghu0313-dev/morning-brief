@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>晨间新闻看板 · 2026-10-11 · 第35期</title>
+<title>晨间新闻看板 · 2026-10-12 · 第36期</title>
 <style>
   :root{
     --bg:#0b1020; --bg2:#10162e; --card:#151c34; --card2:#1b2342;
@@ -16,14 +16,12 @@
     color:var(--txt);font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
     line-height:1.55;padding:0 0 60px}
   .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
-  /* 版本提示条 */
   .verbar{background:linear-gradient(90deg,#ff5a6e22,#5aa0ff22);
     border:1px solid var(--line);border-radius:0 0 14px 14px;
     backdrop-filter:blur(6px);padding:8px 16px;font-size:13px;color:var(--muted);
     display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:center}
   .verbar b{color:var(--txt)}
   .verbar .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);display:inline-block;margin-right:6px}
-  /* 头部 */
   header{padding:30px 0 14px}
   .kicker{color:var(--blue);font-size:13px;letter-spacing:3px;font-weight:600}
   h1{font-size:38px;font-weight:800;margin:6px 0 4px;
@@ -33,13 +31,11 @@
   .badge{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:13px;color:var(--txt)}
   .badge.blue{color:var(--blue);border-color:#2b4a86}
   .badge.red{color:var(--red);border-color:#6e2b35}
-  /* 区块标题 */
   .sec{margin-top:34px}
   .sec-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
   .sec-h .bar{width:5px;height:22px;border-radius:3px;background:linear-gradient(var(--blue),var(--cyan))}
   .sec-h h2{font-size:21px;font-weight:700}
   .sec-h .note{margin-left:auto;color:var(--dim);font-size:12.5px}
-  /* KPI */
   .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .kpi{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);
     border-radius:16px;padding:16px 18px;position:relative;overflow:hidden}
@@ -49,7 +45,6 @@
   .kpi .num{font-size:27px;font-weight:800;margin-top:6px}
   .kpi .delta{font-size:12.5px;margin-top:4px;color:var(--green)}
   .kpi .src{font-size:11.5px;color:var(--dim);margin-top:6px}
-  /* 选题卡片 */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;border-left:4px solid var(--blue)}
   .item.p0{border-left-color:var(--red)}
@@ -65,13 +60,11 @@
   .item p{font-size:13.5px;color:var(--muted)}
   .item .src{margin-top:9px;font-size:11.5px;color:var(--dim);display:flex;gap:6px;flex-wrap:wrap}
   .tag{background:#0d1430;border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--cyan)}
-  /* 来源矩阵 */
   table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
   th,td{text-align:left;padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--line)}
   th{background:var(--card2);color:var(--blue);font-weight:600}
   td .cnt{color:var(--yellow);font-weight:700}
   tr:last-child td{border-bottom:none}
-  /* TOP 榜单 */
   .topgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .toplist{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
   .toplist h4{font-size:15px;margin-bottom:10px;color:var(--txt);display:flex;align-items:center;gap:8px}
@@ -83,13 +76,11 @@
   .row .tt{font-size:13.5px;font-weight:600}
   .row .ds{font-size:12px;color:var(--muted);margin-top:2px}
   .heat{margin-left:auto;font-size:11.5px;color:var(--red);white-space:nowrap}
-  /* 速览 */
   .brief{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;padding:16px 18px}
   .brief ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
   .brief li{font-size:13.5px;color:var(--muted);padding-left:18px;position:relative}
   .brief li::before{content:"▸";position:absolute;left:0;color:var(--blue)}
   .brief li b{color:var(--txt)}
-  /* 底部 */
   footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px;text-align:center}
   .disclaimer{background:#0d1430;border:1px solid var(--line);border-radius:12px;padding:12px 16px;color:var(--muted);font-size:12.5px;line-height:1.6;margin-top:18px}
   @media(max-width:820px){.kpis,.grid,.topgrid,.brief ul{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
@@ -97,8 +88,8 @@
 </head>
 <body>
 <div class="verbar">
-  <span><span class="dot"></span>数据更新：<b>2026-10-11 09:14 (GMT+8)</b></span>
-  <span>第 <b>35</b> 期（2026-09-07 为第1期）</span>
+  <span><span class="dot"></span>数据更新：<b>2026-10-12 09:15 (GMT+8)</b></span>
+  <span>第 <b>36</b> 期（2026-09-07 为第1期）</span>
   <span>内容基于公开权威媒体报道整理 · 仅供参考</span>
 </div>
 
@@ -108,7 +99,7 @@
     <h1>晨间新闻看板</h1>
     <div class="sub">聚焦大陆民生 · 外交 · 文化 · 政治 · 经济 · 两岸与国际关系</div>
     <div class="badges">
-      <span class="badge blue">📅 2026-10-11 星期日 · 农历九月初二</span>
+      <span class="badge blue">📅 2026-10-12 星期一 · 农历九月初三</span>
       <span class="badge">🔥 15 条选题 · P0–P3</span>
       <span class="badge red">🌐 两岸 · 国际速览 已收录</span>
       <span class="badge">📰 多源交叉核验</span>
@@ -117,14 +108,14 @@
 
   <!-- KPI -->
   <section class="sec">
-    <div class="sec-h"><span class="bar"></span><h2>KPI 概览</h2><span class="note">口径：2026 年 1–9 月 / 三季度</span></div>
+    <div class="sec-h"><span class="bar"></span><h2>KPI 概览</h2><span class="note">口径：2026 年 1–9 月 / 三季度 / 10 月 1 日</span></div>
     <div class="kpis">
-      <div class="kpi"><div class="lab">1–9月城镇新增就业</div><div class="num">1052<span style="font-size:15px">万人</span></div><div class="delta">完成全年目标 87.7% · 失业率均值 5.2%</div><div class="src">来源：国新办 / 人社部</div></div>
-      <div class="kpi"><div class="lab">三季度线下消费支付金额</div><div class="num">+2.6<span style="font-size:15px">%</span></div><div class="delta">▲ 9 月 +3.1%，连续 3 个月上行</div><div class="src">来源：国家信息中心</div></div>
-      <div class="kpi"><div class="lab">三季度前沿领域资本投资</div><div class="num">+184.1<span style="font-size:15px">%</span></div><div class="delta">人工智能、人形机器人等 · 9 月 +198.7%</div><div class="src">来源：国家信息中心</div></div>
-      <div class="kpi"><div class="lab">全国秋粮收获进度</div><div class="num">过半</div><div class="delta">西南七成半 · 黄淮海过六成 · 东北三成半</div><div class="src">来源：农业农村部</div></div>
-      <div class="kpi"><div class="lab">国庆假期境外银联卡境内消费</div><div class="num">+40<span style="font-size:15px">%↑</span></div><div class="delta">手机Pay 支付笔数同比 +1.1 倍</div><div class="src">来源：中国银联</div></div>
-      <div class="kpi"><div class="lab">经营者集中简易案件平均审查时间</div><div class="num">18.6<span style="font-size:15px">天</span></div><div class="delta">▼ 较 2014 年的 39.9 天大幅缩短</div><div class="src">来源：市场监管总局</div></div>
+      <div class="kpi"><div class="lab">9 月物流业景气指数</div><div class="num">51.5<span style="font-size:15px">%</span></div><div class="delta">环比 +0.6pp · 连续 5 个月处于扩张区间</div><div class="src">来源：中国物流与采购联合会</div></div>
+      <div class="kpi"><div class="lab">1–9 月全国二手房交易网签面积</div><div class="num">6.17<span style="font-size:15px">亿㎡</span></div><div class="delta">同比 +10.7% · 住房交易活跃度提升</div><div class="src">来源：住建部</div></div>
+      <div class="kpi"><div class="lab">1–9 月城镇新增就业</div><div class="num">1052<span style="font-size:15px">万人</span></div><div class="delta">完成全年目标 87.7% · 失业率均值 5.2%</div><div class="src">来源：人社部</div></div>
+      <div class="kpi"><div class="lab">8 月中国企业信用指数</div><div class="num">161.32</div><div class="delta">较 7 月上升 2.45 点 · 营商环境向好</div><div class="src">来源：市场监管总局</div></div>
+      <div class="kpi"><div class="lab">9 月新开国际航空货运航线</div><div class="num">15<span style="font-size:15px">条</span></div><div class="delta">每周往返航班达 42 个 · 物流联通扩容</div><div class="src">来源：民航 / 物流行业</div></div>
+      <div class="kpi"><div class="lab">银发经济产业规模预测</div><div class="num">30<span style="font-size:15px">万亿元</span></div><div class="delta">2025 年 9 万亿 → 预计 2035 年破 30 万亿</div><div class="src">来源：经济日报 / 国务院规划</div></div>
     </div>
   </section>
 
@@ -132,80 +123,80 @@
   <section class="sec">
     <div class="sec-h"><span class="bar"></span><h2>今日选题 · P0–P3</h2><span class="note">优先级与分类、来源一并标注</span></div>
     <div class="grid">
-      <div class="item p0"><div class="top"><span class="pri p0">P0</span><span class="cat">政治 · 重大政策</span></div>
-        <h3>《中共中央 国务院关于发展新质生产力的意见》公开发布</h3>
-        <p>意见提出 19 条重大发展改革任务，将原创性理论转化为行动指南。"十五五"时期必须把因地制宜发展新质生产力摆在更加突出的战略位置，加快建设现代化产业体系。</p>
-        <div class="src"><span class="tag">人民日报头版</span><span class="tag">新华社</span></div></div>
-
       <div class="item p0"><div class="top"><span class="pri p0">P0</span><span class="cat">两岸 · 主权</span></div>
-        <h3>国台办批驳赖清德所谓"双十"讲话；新华时评：阻挡不了统一大势</h3>
-        <p>国台办发言人答记者问指出，该讲话罔顾事实、颠倒是非，是其"务实台独工作者"的"本色表演"。中方将坚持一个中国原则和"九二共识"，坚决打击"台独"分裂势力，维护台海和平稳定。</p>
-        <div class="src"><span class="tag">人民日报</span><span class="tag">国台办</span><span class="tag">新华社</span></div></div>
+        <h3>国防部、国台办接连发声批驳赖清德所谓"双十"讲话</h3>
+        <p>国防部新闻发言人陈曦表示，解放军位台岛周边常态开展演训活动，就是震慑"台独"妄动和外来干涉图谋，维护台湾民众的安全福祉，天经地义、无可厚非；国台办发言人张晗指出该讲话是其作为"务实台独工作者"的"本色表演"。</p>
+        <div class="src"><span class="tag">人民日报</span><span class="tag">新华社</span><span class="tag">国防部</span><span class="tag">国台办</span></div></div>
 
-      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">民生 · 食品安全</span></div>
-        <h3>食品安全法修订草案公开征求意见，涉校园食品安全与 AI 监管</h3>
-        <p>修订的主要内容包括增设"学校食品安全"专节，确立校长（园长）负责制，建立中小学、幼儿园集中用餐陪餐制度等，市场监管总局向社会公开征求意见。</p>
-        <div class="src"><span class="tag">央视新闻</span><span class="tag">川观新闻</span><span class="tag">市场监管总局</span></div></div>
+      <div class="item p0"><div class="top"><span class="pri p0">P0</span><span class="cat">文化 · 体育</span></div>
+        <h3>郑钦文首夺中网女单冠军，王曼昱 WTT 中国大满贯女单卫冕</h3>
+        <p>11 日中网女单决赛，郑钦文 2-0 战胜新科法网冠军安德列娃，成为中网二十届赛事首位中国籍女单冠军，并首夺 WTA1000 级赛事冠军；同日 WTT 中国大满贯女单决赛，王曼昱 4-0 直落四局横扫日本选手佐藤瞳成功卫冕。</p>
+        <div class="src"><span class="tag">央视新闻</span><span class="tag">新华社</span><span class="tag">中国日报</span></div></div>
 
-      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">经济 · 反垄断</span></div>
-        <h3>市场监管总局就美团收购麦芽田股权案举行公开听证</h3>
-        <p>经审查，该集中对境内配送聚合平台服务市场可能具有排除、限制竞争效果，并进一步强化美团在网络餐饮外卖与即时零售市场的控制力；申报方已提交附条件承诺方案。</p>
-        <div class="src"><span class="tag">新华财经</span><span class="tag">市场监管总局</span></div></div>
+      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">民生 · 粤港澳</span></div>
+        <h3>深圳新皇岗口岸 6:30 正式开通，深港间唯一 24 小时陆路口岸</h3>
+        <p>重建后皇岗口岸实行"一地两检"及"合作查验、一次放行"全新通关模式，日通关流量约 20 万人次，将大幅提升深港人员往来效率并强化大湾区互联互通。</p>
+        <div class="src"><span class="tag">央视新闻</span><span class="tag">川观新闻</span><span class="tag">新华社</span></div></div>
 
-      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">经济 · 消费</span></div>
-        <h3>商务部等 7 部门部署品质电商"五优"行动</h3>
-        <p>重点纠治电商平台"自动跟价""全网最低价"等无序竞争行为，围绕五大维度部署 15 项具体工作，坚持惠民生与促消费结合。</p>
-        <div class="src"><span class="tag">新华社</span><span class="tag">商务部</span></div></div>
+      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">政治 · 廉政</span></div>
+        <h3>中纪委连打两"虎"，涉受贿被开除党籍并移送司法</h3>
+        <p>中央纪委国家监委近日通报：西藏自治区人大常委会原党组副书记、副主任丁业现和中国艺术研究院原院长连辑，严重职务违法并涉嫌受贿犯罪，均被开除党籍并移送检察机关依法审查起诉；具体涉案情形以官方通报为准。</p>
+        <div class="src"><span class="tag">中央纪委国家监委</span><span class="tag">人民日报</span></div></div>
 
-      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">体育 · 网球</span></div>
-        <h3>郑钦文首进中网女单决赛，今晚冲击个人首个中网冠军</h3>
-        <p>2026 中网女单半决赛，郑钦文击败赛会 13 号种子梅尔滕斯晋级决赛。同日 WTT 中国大满贯女双决赛，王曼昱/蒯曼 3-1 战胜日本组合夺冠。</p>
-        <div class="src"><span class="tag">央视新闻</span><span class="tag">新华社</span></div></div>
+      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">民生 · 就业</span></div>
+        <h3>人社部全面推进"退休预服务"，一证办结；启动 AI 促就业行动</h3>
+        <p>人社部副部长李忠介绍，将全面推进"退休预服务"，推行"退休一件事"提速办理，一张身份证即可办结；同时开展"适应人工智能发展促就业"等五大行动。</p>
+        <div class="src"><span class="tag">人社部</span><span class="tag">国新办</span></div></div>
 
-      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 汽车</span></div>
-        <h3>四部门征求意见：禁止配备全隐藏式门把手、折叠显示屏</h3>
-        <p>工信部等四部门就加强汽车产品创新设计和研发测试验证管理征求意见，围绕虚拟操纵件、门把手、新型人机交互系统等提出具体测试验证要求。</p>
-        <div class="src"><span class="tag">新华社</span><span class="tag">工信部</span></div></div>
+      <div class="item p1"><div class="top"><span class="pri p1">P1</span><span class="cat">经济 · 监管</span></div>
+        <h3>2026 电影总票房破 310 亿，国产影片占前十八席</h3>
+        <p>据测算今年以来电影全产业链产值已超 4800 亿元。今年票房前十影片中，《飞驰人生 3》《欢迎来龙餐馆》《功夫女足》《八仙！》《给阿嬷的情书》《镖人：风起大漠》《惊蛰无声》《熊出没·年年有熊》等八部国产片在榜。</p>
+        <div class="src"><span class="tag">腾讯新闻</span><span class="tag">今日头条</span></div></div>
 
-      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 住房</span></div>
-        <h3>深圳公积金新规征求意见：装修单次最高可提 25 万元</h3>
-        <p>拟新增装修和物业费提取：装修每套每次最高提 25 万元，物业费每月每套最高提 550 元；租房提取额度拟由 65% 提高至 80%。</p>
-        <div class="src"><span class="tag">南方+</span></div></div>
+      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">经济 · 消费</span></div>
+        <h3>银发经济规模 9 万亿元，2035 年预计破 30 万亿</h3>
+        <p>国务院批复同意的《扩大消费"十五五"规划》将养老消费置于突出位置，商务部明确到 2030 年打造 500 条"银发金街"。多地新场景涌现：北京 33 个居家适老化改造公共样板间、杭州"AI+养老"综合体等。</p>
+        <div class="src"><span class="tag">经济日报</span><span class="tag">央广网</span></div></div>
 
-      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">能源 · 基建</span></div>
-        <h3>烟威 1000 千伏特高压工程竣工投产；葛洲坝航运扩能进入主体施工</h3>
-        <p>"十五五"时期全国首个投运的特高压交流新建工程，线路全长 1197 公里，大幅提升山东绿电供给；三峡水运新通道葛洲坝航运扩能围堰正式启动施工。</p>
-        <div class="src"><span class="tag">央视新闻</span><span class="tag">经济日报</span></div></div>
+      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 工资</span></div>
+        <h3>全国各地最低工资标准公布，上海月 2740 元、北京小时 27.7 元居首</h3>
+        <p>人社部网站发布全国各省、自治区、直辖市最低工资标准情况（截至 2026 年 10 月 1 日）。在月最低工资标准方面，上海以 2740 元居全国首位；在小时最低工资标准方面，北京以 27.7 元居全国首位。</p>
+        <div class="src"><span class="tag">人社部</span><span class="tag">腾讯新闻</span></div></div>
 
-      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">科技 · 航天</span></div>
-        <h3>长征十二号成功发射卫星互联网低轨 27 组卫星</h3>
-        <p>10 日在海南商业航天发射场成功发射。长征十二号是我国首款 4 米级单芯级运载火箭，支持单星、多星不同轨道发射任务。</p>
-        <div class="src"><span class="tag">经济日报</span></div></div>
+      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 消费</span></div>
+        <h3>大闸蟹价格大跌，中小规格同比降 30–50%，高品质坚挺</h3>
+        <p>近期受大闸蟹增产约 10% 影响，多地市场中小规格大闸蟹价格同比降幅 30%–50%，部分跌出"地板价"；核心产区高品质蟹价格依然坚挺，市场呈显著分化格局。</p>
+        <div class="src"><span class="tag">腾讯新闻</span><span class="tag">今日头条</span></div></div>
+
+      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">经济 · 制造业</span></div>
+        <h3>2026 广交会 CF 奖揭晓，张雪机车 820RR 获至尊金奖</h3>
+        <p>2026 年广交会设计创新奖(CF 奖)名单公布，共 174 家企业 222 件产品获奖，张雪机车 820RR 与智巡胶囊机器人胃内窥镜系统同获至尊金奖；11 日世超摩赛葡萄牙站，"张雪机车"车手德比斯亦斩获第三名。</p>
+        <div class="src"><span class="tag">中国对外贸易中心</span><span class="tag">央视新闻</span></div></div>
 
       <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 出行</span></div>
-        <h3>全国铁路今零时起实施第四季度运行图；冷空气来袭北方降温</h3>
-        <p>长三角旅客列车开行总数达 1435.5 对创历史新高。11–13 日北方大部降温 4~6℃、局地 8~12℃，西北东部、华北南部等有降雨过程。</p>
-        <div class="src"><span class="tag">央视新闻</span><span class="tag">经济日报</span><span class="tag">中央气象台</span></div></div>
+        <h3>"北京大兴—天水"往返航线通航，每周 4 班；铁路实施新运行图</h3>
+        <p>10 月 11 日，"北京大兴—天水"往返航线正式通航，由首都航空 A320 执飞，每周一、三、五、日各一班；同时拱北—关闸口岸 2026 年出入境人员突破 1 亿人次，比 2025 年提前 14 天。</p>
+        <div class="src"><span class="tag">首都航空</span><span class="tag">央视新闻</span></div></div>
 
-      <div class="item p2"><div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 残疾人事业</span></div>
-        <h3>《国家残疾预防行动计划（2026—2030年）》印发；500 人代表团出征亚残运会</h3>
-        <p>行动计划设置 18 项主要指标，加强出生缺陷源头防控。第五届亚残运会（10/18–24）中国代表团成立，总人数 500 人，其中运动员 312 人，为境外参赛规模最大一届。</p>
-        <div class="src"><span class="tag">央视新闻</span><span class="tag">人民日报</span></div></div>
+      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">民生 · 法治</span></div>
+        <h3>中央政法委发布第三季度见义勇为勇士榜，79 人上榜</h3>
+        <p>中央政法委发布 2026 年第三季度见义勇为勇士榜，共有 79 位见义勇为勇士获通报表扬和奖励慰问，其中 13 位因见义勇为不幸牺牲，30 多人自发投身汛期自然灾害抢险救人。</p>
+        <div class="src"><span class="tag">中央政法委</span><span class="tag">腾讯新闻</span></div></div>
 
-      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">文化 · 阅读</span></div>
-        <h3>2026 天府书展亮点揭晓：800 余场文化活动、500 万元惠民消费券</h3>
-        <p>书展 10/16–19 在成都举行，线下主展场约 2.2 万平方米，图书分享活动 430 余场，麦家、阿来、徐则臣等知名作家参与活动 140 余场。</p>
-        <div class="src"><span class="tag">成都发布</span><span class="tag">今日头条</span></div></div>
+      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">民生 · 安全</span></div>
+        <h3>陕西榆林就《焦点访谈》曝光的危货车超载等成立联合调查组</h3>
+        <p>针对中央广播电视总台《焦点访谈》曝光的危货车超载运输、设备检验报告造假等问题，陕西榆林成立联合调查组开展专项问题调查处置，将依法依规从严查处违法违规行为，并严肃追责问责。</p>
+        <div class="src"><span class="tag">央视新闻</span><span class="tag">《焦点访谈》</span></div></div>
 
-      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">科技 · 医疗</span></div>
-        <h3>广东发布病理基因 AI 大模型，肺癌基因检测费用降至数百元</h3>
-        <p>DeepGEM2.0 启动全国 50 家医疗机构多中心验证，将肺癌基因检测费用从数千元降至数百元，最快 1 分钟出结果。</p>
-        <div class="src"><span class="tag">南方+</span></div></div>
+      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">民生 · 食安</span></div>
+        <h3>食品安全法修订草案征求意见，涉校园食安与 AI 监管</h3>
+        <p>市场监管总局公布《食品安全法（修订草案征求意见稿）》，新增"学校食品安全"专节，确立校长（园长）负责制与中小学、幼儿园集中用餐陪餐制度；推动"互联网+人工智能"监管应用。</p>
+        <div class="src"><span class="tag">市场监管总局</span><span class="tag">腾讯新闻</span></div></div>
 
-      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">法治 · 廉政</span></div>
-        <h3>涉外法律服务平台"法通"网上线；文物犯罪典型案例发布</h3>
-        <p>"法通"网为"走出去"企业公民提供涉外法律"一站式"服务。最高法、国家文物局发布 6 件依法惩治文物犯罪典型案例。另有一名省级政协原负责人受贿案一审公开宣判。</p>
-        <div class="src"><span class="tag">央视新闻</span><span class="tag">新华财经</span><span class="tag">最高法</span></div></div>
+      <div class="item p3"><div class="top"><span class="pri p3">P3</span><span class="cat">文化 · 文博</span></div>
+        <h3>《文博日历》今日介绍南宋马远《梅石溪凫图》</h3>
+        <p>央视新闻联合全国博物馆推出文博科普产品《文博日历》。今日聚焦南宋画家马远的《梅石溪凫图》页，山崖蜡梅、溪间野鸭相映成趣，斧劈皴绘出峭拔山石，画面刚柔动静交融，人称"马一角"的马远擅长边角构图。</p>
+        <div class="src"><span class="tag">央视新闻</span><span class="tag">《文博日历》</span></div></div>
     </div>
   </section>
 
@@ -215,14 +206,14 @@
     <table>
       <thead><tr><th>来源 / 信源</th><th>类型</th><th>采用条数</th><th>主要覆盖</th></tr></thead>
       <tbody>
-        <tr><td>央视新闻（早啊新闻来了）</td><td>中央媒体</td><td class="cnt">10</td><td>综合要闻、政策、体育、天气</td></tr>
-        <tr><td>人民日报 / 人民网</td><td>中央媒体</td><td class="cnt">7</td><td>时政头版、两岸、消费、亚残运会</td></tr>
-        <tr><td>新华财经 / 新华社</td><td>国家通讯社</td><td class="cnt">7</td><td>反垄断、部委政策、基建</td></tr>
-        <tr><td>经济日报（财经早餐）</td><td>财经媒体</td><td class="cnt">6</td><td>宏观指标、航天、国际经济</td></tr>
-        <tr><td>川观新闻（川观早8点）</td><td>省级党媒</td><td class="cnt">4</td><td>民生、要闻汇编</td></tr>
-        <tr><td>南方+ / 澎湃新闻</td><td>区域媒体</td><td class="cnt">5</td><td>大湾区民生、公积金、书展</td></tr>
-        <tr><td>部委信源（人社/农业/商务/工信/市场监管/气象/国台办/国防部等）</td><td>官方数据</td><td class="cnt">12</td><td>全部 KPI 与政策数据</td></tr>
-        <tr><td>今日头条 / 腾讯新闻 / 新浪</td><td>聚合平台</td><td class="cnt">4</td><td>热点聚合、两岸时评</td></tr>
+        <tr><td>央视新闻（早啊新闻来了）</td><td>中央媒体</td><td class="cnt">9</td><td>综合要闻、体育、深港口岸、文博日历</td></tr>
+        <tr><td>人民日报 / 人民网</td><td>中央媒体</td><td class="cnt">5</td><td>明德战略对话、两岸、时政评论</td></tr>
+        <tr><td>新华社 / 新华财经</td><td>国家通讯社</td><td class="cnt">5</td><td>跨境基建、部委政策、口岸运行</td></tr>
+        <tr><td>经济日报 / 央广网</td><td>财经媒体</td><td class="cnt">4</td><td>银发经济、宏观指标</td></tr>
+        <tr><td>川观新闻（川观早8点）</td><td>省级党媒</td><td class="cnt">5</td><td>民生要闻、天气预警、地方动态</td></tr>
+        <tr><td>中国日报（China Daily）</td><td>中央外宣</td><td class="cnt">3</td><td>两岸、英文时政</td></tr>
+        <tr><td>今日头条 / 腾讯新闻 / 新浪</td><td>聚合平台</td><td class="cnt">6</td><td>体育、民生、文化热点</td></tr>
+        <tr><td>部委信源（人社/住建/市场监管/国防部/国台办等）</td><td>官方数据</td><td class="cnt">10</td><td>全部 KPI 与政策数据</td></tr>
       </tbody>
     </table>
   </section>
@@ -233,21 +224,21 @@
     <div class="topgrid">
       <div class="toplist">
         <h4><span class="ic">📊</span>早间阅读量 TOP6</h4>
-        <div class="row"><span class="rk">1</span><div><div class="tt">《关于发展新质生产力的意见》发布：19 条重大改革任务</div><div class="ds">人民日报头版头条级政策</div></div><span class="heat">🔥 极高</span></div>
-        <div class="row"><span class="rk">2</span><div><div class="tt">国台办批驳赖清德"双十"讲话</div><div class="ds">两岸关系高度关注</div></div><span class="heat">🔥 极高</span></div>
-        <div class="row"><span class="rk">3</span><div><div class="tt">郑钦文今晚冲击中网女单首冠</div><div class="ds">体育热度榜首</div></div><span class="heat">🔥 高</span></div>
-        <div class="row"><span class="rk">4</span><div><div class="tt">食品安全法修订草案征求意见：校园食品安全设专节</div><div class="ds">民生切身利益</div></div><span class="heat">🔥 高</span></div>
-        <div class="row"><span class="rk">5</span><div><div class="tt">美团收购麦芽田股权案公开听证</div><div class="ds">平台经济反垄断风向标</div></div><span class="heat">🔥 高</span></div>
-        <div class="row"><span class="rk">6</span><div><div class="tt">冷空气携雨雪袭北方，局地降温超 10℃</div><div class="ds">出行生活提示</div></div><span class="heat">🔥 中</span></div>
+        <div class="row"><span class="rk">1</span><div><div class="tt">郑钦文首夺中网女单冠军，成中网首位中国籍女单冠军</div><div class="ds">体育热度榜首，全民热议</div></div><span class="heat">🔥 极高</span></div>
+        <div class="row"><span class="rk">2</span><div><div class="tt">国防部、国台办接连发声批驳赖清德所谓"双十"讲话</div><div class="ds">两岸关系最高规格发声</div></div><span class="heat">🔥 极高</span></div>
+        <div class="row"><span class="rk">3</span><div><div class="tt">深圳新皇岗口岸 6:30 正式开通，深港间唯一 24 小时陆路口岸</div><div class="ds">大湾区互联互通里程碑</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">4</span><div><div class="tt">中纪委连打两"虎"，两名领导干部严重职务违法被处理</div><div class="ds">反腐高压态势持续</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">5</span><div><div class="tt">王曼昱 4-0 横扫佐藤瞳，WTT 中国大满贯女单成功卫冕</div><div class="ds">国乒延续统治力</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">6</span><div><div class="tt">人社部全面推进"退休预服务"；全国最低工资标准公布</div><div class="ds">民生切身利益</div></div><span class="heat">🔥 中</span></div>
       </div>
       <div class="toplist">
         <h4><span class="ic">🎬</span>视频号高热 TOP6</h4>
-        <div class="row"><span class="rk">1</span><div><div class="tt">郑钦文中网半决赛晋级瞬间</div><div class="ds">今晚决赛冲冠，全民热议</div></div><span class="heat">🔥 高</span></div>
-        <div class="row"><span class="rk">2</span><div><div class="tt">长征十二号海上发射卫星互联网卫星</div><div class="ds">硬核航天画面</div></div><span class="heat">🔥 高</span></div>
-        <div class="row"><span class="rk">3</span><div><div class="tt">王曼昱/蒯曼 WTT 女双夺冠</div><div class="ds">国乒赛事热度</div></div><span class="heat">🔥 高</span></div>
-        <div class="row"><span class="rk">4</span><div><div class="tt">库克现身广州"探班"咏春短片拍摄</div><div class="ds">舞狮书法"太棒了"</div></div><span class="heat">🔥 中</span></div>
-        <div class="row"><span class="rk">5</span><div><div class="tt">西晋"香薰机"镂空双凤纹盖铜熏炉</div><div class="ds">央视《文博日历》文博科普</div></div><span class="heat">🔥 中</span></div>
-        <div class="row"><span class="rk">6</span><div><div class="tt">全国秋粮收获过半，丰收进行时</div><div class="ds">三农与丰收图景</div></div><span class="heat">🔥 中</span></div>
+        <div class="row"><span class="rk">1</span><div><div class="tt">郑钦文中网夺冠颁奖瞬间</div><div class="ds">2-0 战胜安德列娃，钻石球场沸腾</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">2</span><div><div class="tt">王曼昱 WTT 中国大满贯女单卫冕</div><div class="ds">11-2、11-8、11-3、11-9 直落四局</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">3</span><div><div class="tt">新皇岗口岸首日通关现场</div><div class="ds">"一地两检"全新通关模式</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">4</span><div><div class="tt">国防部就赖清德所谓"双十"讲话答记者问</div><div class="ds">解放军常态化演训震慑"台独"</div></div><span class="heat">🔥 高</span></div>
+        <div class="row"><span class="rk">5</span><div><div class="tt">"深海一号"搭载"蛟龙"号赴西太平洋科考</div><div class="ds">计划下潜深度约 4500 米</div></div><span class="heat">🔥 中</span></div>
+        <div class="row"><span class="rk">6</span><div><div class="tt">《文博日历》南宋马远《梅石溪凫图》</div><div class="ds">"马一角"边角构图赏析</div></div><span class="heat">🔥 中</span></div>
       </div>
     </div>
   </section>
@@ -257,16 +248,16 @@
     <div class="sec-h"><span class="bar"></span><h2>两岸 · 国际速览</h2><span class="note">中方立场与全球要闻</span></div>
     <div class="brief">
       <ul>
-        <li><b>两岸：</b>国台办发言人就赖清德所谓"双十"讲话答记者问，正告"台独"分裂是台海和平稳定最大威胁；新华时评指出无论其如何包装欺骗，都阻挡不了统一大势。</li>
-        <li><b>主权维权：</b>10 日中国海警厦门舰编队在我钓鱼岛及其附属岛屿领海内依法开展维权巡航。</li>
-        <li><b>中美两军：</b>国防部表示愿同美方一道落实两国元首重要共识，加强沟通对话、妥善管控分歧，推动两军关系稳定、健康、可持续发展。</li>
-        <li><b>中东：</b>沙特民航总局确认利雅得哈立德国王国际机场遭袭致 12 人死亡、309 人受伤，尚无中国公民伤亡报告；利雅得机场仍暂停运营。</li>
-        <li><b>美俄：</b>特朗普称与普京达成一致，俄罗斯将立即向美国及全球市场供应超 30 万吨柴油，11 月再供 50 万吨；普京确认将提供石油及石油产品。</li>
-        <li><b>美以伊：</b>以色列方面消息称，特朗普与内塔尼亚胡近期就美以可能再对伊朗发动军事打击频繁紧急沟通。</li>
-        <li><b>美国经济：</b>美国财长贝森特表示，美国国债规模已攀升至约 41 万亿美元。</li>
-        <li><b>拉美：</b>巴拿马 10 日凌晨发生 7.6 级地震并多次 6 级以上余震，已致 27 人受伤，暂无人员死亡报告。</li>
-        <li><b>土耳其：</b>总统府发布条例，禁止未满 15 周岁未成年人开设社交媒体账号，11 月 1 日生效。</li>
-        <li><b>金砖：</b>印尼学者接受人民日报采访表示期待金砖"中国年"，相信中国将继续在金砖务实合作中发挥重要作用。</li>
+        <li><b>两岸：</b>国台办发言人张晗 10 日、国防部新闻发言人陈曦 11 日分别答记者问，正告赖清德所谓"双十"讲话罔顾事实、颠倒是非，是其作为"务实台独工作者"的"本色表演"。</li>
+        <li><b>岛内反应：</b>台湾民众党主席黄国昌、国民党主席郑丽文等岛内政治人物纷纷发声批评赖清德讲话"以口号掩饰问题"，激化政治对立、漠视民生。</li>
+        <li><b>中东：</b>沙特主导多国联军发言人 11 日称，一枚不明投射物袭击利雅得哈立德国王国际机场 4 号航站楼，防空系统拦截并摧毁一枚巡航导弹；胡塞武装承认 24 小时内对沙特境内目标发动四轮军事行动，机场航运中断、全面关闭。</li>
+        <li><b>中东·伊朗：</b>伊朗原子能组织主席伊斯拉米 11 日表示，伊朗本国掌握的核技术不可能在外国的压力下放弃；伊朗伊斯兰革命卫队同日公布一段油轮爆炸起火视频。</li>
+        <li><b>俄乌：</b>特朗普 11 日称即刻起俄乌冲突进入"能源停火"状态，泽连斯基回应"这是个新闻"，并与多个欧洲国家领导人通电话呼吁加大对乌援助。欧洲官员消息称美国以断供武器施压基辅停止对俄能源基础设施打击。</li>
+        <li><b>中东·世卫：</b>世界卫生组织 10 日表示，俄罗斯不明原因肺炎事件无持续传播证据，但目前尚未确认病原体。</li>
+        <li><b>欧洲：</b>俄罗斯政府发布消息，俄方已部分解除柴油出口禁令；俄方部分部长将与美方就经济议题接触。</li>
+        <li><b>国际移民：</b>国际移民组织发布消息，一艘载有 350 人的移民船在吉布提沿海倾覆，造成至少 109 人死亡，另有 110 多人失踪。</li>
+        <li><b>国际外交：</b>明德战略对话（2026）主论坛 11 日在京举行，20 余位各国前政要、专家学者围绕"中国发展给世界带来的新机遇"展开战略对话。</li>
+        <li><b>全球经济：</b>经济日报分析指出，2025 年我国银发经济产业规模达 9 万亿元，预计到 2035 年将突破 30 万亿元，多地新场景正加速涌现。</li>
       </ul>
     </div>
   </section>
@@ -276,7 +267,7 @@
   </div>
 
   <footer>
-    晨间新闻看板 · 第 35 期 · 2026-10-11 · 数据更新 09:14 (GMT+8) · GitHub Pages 自动发布<br>
+    晨间新闻看板 · 第 36 期 · 2026-10-12 · 数据更新 09:15 (GMT+8) · GitHub Pages 自动发布<br>
     访问地址：https://jinghu0313-dev.github.io/morning-brief/
   </footer>
 </div>

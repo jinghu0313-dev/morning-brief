@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨间新闻看板 · 2026-10-14 · 第38期</title>
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#10162e; --card:#151c34; --card2:#1b2342;
+    --line:#26305a; --txt:#e8edff; --muted:#9aa6cf; --dim:#6b78a8;
+    --red:#ff5a6e; --orange:#ffa53c; --yellow:#ffd84d; --green:#3ddc97;
+    --blue:#5aa0ff; --purple:#b388ff; --cyan:#46e0e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:linear-gradient(160deg,#0b1020,#0e1430 60%,#0b1020);
+    color:var(--txt);font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+    line-height:1.55;padding:0 0 60px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+  .verbar{background:linear-gradient(90deg,#ff5a6e22,#5aa0ff22);
+    border:1px solid var(--line);border-radius:0 0 14px 14px;
+    backdrop-filter:blur(6px);padding:8px 16px;font-size:13px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:center}
+  .verbar b{color:var(--txt)}
+  .verbar .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);display:inline-block;margin-right:6px}
+  header{padding:30px 0 14px}
+  .kicker{color:var(--blue);font-size:13px;letter-spacing:3px;font-weight:600}
+  h1{font-size:38px;font-weight:800;margin:6px 0 4px;
+    background:linear-gradient(90deg,#fff,#9fc4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:15px}
+  .badges{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .badge{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:13px;color:var(--txt)}
+  .badge.blue{color:var(--blue);border-color:#2b4a86}
+  .badge.red{color:var(--red);border-color:#6e2b35}
+  .sec{margin-top:34px}
+  .sec-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .sec-h .bar{width:5px;height:22px;border-radius:3px;background:linear-gradient(var(--blue),var(--cyan))}
+  .sec-h h2{font-size:21px;font-weight:700}
+  .sec-h .note{margin-left:auto;color:var(--dim);font-size:12.5px}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .kpi{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);
+    border-radius:16px;padding:16px 18px;position:relative;overflow:hidden}
+  .kpi::after{content:"";position:absolute;right:-20px;top:-20px;width:70px;height:70px;border-radius:50%;
+    background:radial-gradient(circle,rgba(90,160,255,.18),transparent 70%)}
+  .kpi .lab{color:var(--muted);font-size:13px}
+  .kpi .num{font-size:27px;font-weight:800;margin-top:6px}
+  .kpi .delta{font-size:12.5px;margin-top:4px;color:var(--green)}
+  .kpi .src{font-size:11.5px;color:var(--dim);margin-top:6px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;border-left:4px solid var(--blue)}
+  .item.p0{border-left-color:var(--red)}
+  .item.p1{border-left-color:var(--orange)}
+  .item.p2{border-left-color:var(--blue)}
+  .item.p3{border-left-color:var(--dim)}
+  .item .top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .pri{font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;color:#0b1020}
+  .pri.p0{background:var(--red)} .pri.p1{background:var(--orange)}
+  .pri.p2{background:var(--blue)} .pri.p3{background:var(--dim)}
+  .cat{font-size:12px;color:var(--muted)}
+  .item h3{font-size:16px;font-weight:700;margin-bottom:6px;line-height:1.4}
+  .item p{font-size:13.5px;color:var(--muted)}
+  .item .src{margin-top:9px;font-size:11.5px;color:var(--dim);display:flex;gap:6px;flex-wrap:wrap}
+  .tag{background:#0d1430;border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--cyan)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{text-align:left;padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--line)}
+  th{background:var(--card2);color:var(--blue);font-weight:600}
+  td .cnt{color:var(--yellow);font-weight:700}
+  tr:last-child td{border-bottom:none}
+  .topgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .toplist{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .toplist h4{font-size:15px;margin-bottom:10px;color:var(--txt);display:flex;align-items:center;gap:8px}
+  .toplist h4 .ic{font-size:16px}
+  .row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+  .row:last-child{border-bottom:none}
+  .rk{font-size:17px;font-weight:800;color:var(--dim);min-width:22px}
+  .row:nth-child(2) .rk{color:#ffd84d} .row:nth-child(3) .rk{color:#cfd6f0} .row:nth-child(4) .rk{color:#e0a86b}
+  .row .tt{font-size:13.5px;font-weight:600}
+  .row .ds{font-size:12px;color:var(--muted);margin-top:2px}
+  .heat{margin-left:auto;font-size:11.5px;color:var(--red);white-space:nowrap}
+  .brief{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .brief ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+  .brief li{font-size:13.5px;color:var(--muted);padding-left:18px;position:relative}
+  .brief li::before{content:"▸";position:absolute;left:0;color:var(--blue)}
+  .brief li b{color:var(--txt)}
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px;text-align:center}
+  .disclaimer{background:#0d1430;border:1px solid var(--line);border-radius:12px;padding:12px 16px;color:var(--muted);font-size:12.5px;line-height:1.6;margin-top:18px}
+  @media(max-width:820px){.kpis,.grid,.topgrid,.brief ul{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="verbar">
+  <span><span class="dot"></span>数据更新：<b>2026-10-14 09:30 (GMT+8)</b></span>
+  <span>第 <b>38</b> 期（2026-09-07 为第1期）</span>
+  <span>内容基于公开权威媒体报道整理 · 仅供参考</span>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="kicker">MORNING NEWS BRIEF</div>
+    <h1>晨间新闻看板</h1>
+    <div class="sub">聚焦大陆民生 · 外交 · 文化 · 政治 · 经济 · 两岸与国际关系</div>
+    <div class="badges">
+      <span class="badge blue">📅 2026-10-14 星期三 · 农历九月初五</span>
+      <span class="badge">🔥 18 条选题 · P0–P3</span>
+      <span class="badge red">🌐 两岸 · 国际速览 已收录</span>
+      <span class="badge">📰 多源交叉核验</span>
+    </div>
+  </header>
+
+  <!-- KPI -->
+  <section class="sec">
+    <div class="sec-h"><span class="bar"></span><h2>KPI 概览</h2><span class="note">口径：2026 年 9 月 / 前三季度 / 10 月中旬</span></div>
+    <div class="kpis">
+      <div class="kpi"><div class="lab">全国秋粮收获进度</div><div class="num">&gt;60<span style="font-size:15px">%</span></div><div class="delta">已过六成 · 进度快于上年同期</div><div class="src">来源：农业农村部农情调度</div></div>
+      <div class="kpi"><div class="lab">9 月中国电商物流指数</div><div class="num">111.9<span style="font-size:15px">点</span></div><div class="delta">环比回升 0.4 点 · 9 个分项多数回升</div><div class="src">来源：中国物流与采购联合会</div></div>
+      <div class="kpi"><div class="lab">前三季度城镇新增就业</div><div class="num">1052<span style="font-size:15px">万人</span></div><div class="delta">完成全年目标 87.7% · 人社部推五项行动稳岗</div><div class="src">来源：人力资源和社会保障部</div></div>
+      <div class="kpi"><div class="lab">第 140 届广交会参展企业</div><div class="num">3.2<span style="font-size:15px">万家</span></div><div class="delta">10 月 15 日开幕 · 恰逢广交会创办 70 周年</div><div class="src">来源：中国对外贸易中心</div></div>
+      <div class="kpi"><div class="lab">1—8 月服务进出口总额</div><div class="num">&gt;5<span style="font-size:15px">万亿元</span></div><div class="delta">知识密集型服务出口占比过半</div><div class="src">来源：商务部</div></div>
+      <div class="kpi"><div class="lab">IMF 上调 2026 世界经济增长预期</div><div class="num">3.1<span style="font-size:15px">%</span></div><div class="delta">全球经济韧性好于此前预期</div><div class="src">来源：国际货币基金组织</div></div>
+    </div>
+  </section>
+
+  <!-- 选题 -->
+  <section class="sec">
+    <div class="sec-h"><span class="bar"></span><h2>今日选题（P0–P3）</h2><span class="note">P0 必选 · P1 重点 · P2 备选 · P3 观察</span></div>
+    <div class="grid">
+
+      <div class="item p0">
+        <div class="top"><span class="pri p0">P0</span><span class="cat">时政 · 民生</span></div>
+        <h3>全国卫生与健康大会召开，部署"十五五"健康中国建设</h3>
+        <p>大会 12 日至 13 日在北京召开。会议强调把保障人民健康放在优先发展的战略位置，坚定不移走中国特色卫生与健康发展道路，推动构建多层次医疗保障体系、优化药品耗材集采与医保支付政策，抓好"一老一小"健康服务，确保"十五五"时期健康中国建设取得决定性进展。</p>
+        <div class="src"><span class="tag">新华社</span><span class="tag">央视新闻联播</span><span class="tag">人民日报</span></div>
+      </div>
+
+      <div class="item p0">
+        <div class="top"><span class="pri p0">P0</span><span class="cat">经济 · 外贸</span></div>
+        <h3>第 140 届广交会 10 月 15 日开幕，恰逢创办 70 周年</h3>
+        <p>本届广交会 10 月 15 日至 11 月 4 日分三期在广州举办，展览总面积约 155 万平方米、参展企业 3.2 万家，64% 的企业应用工业互联网、人工智能等新技术，推出超 50 项创新举措，首次推出 22 个智慧应用场景和 16 项 AI 特色应用，实现全馆展位级导航。</p>
+        <div class="src"><span class="tag">央视新闻</span><span class="tag">新华社</span><span class="tag">广州日报</span></div>
+      </div>
+
+      <div class="item p0">
+        <div class="top"><span class="pri p0">P0</span><span class="cat">时政 · 高层外交</span></div>
+        <h3>习近平同博茨瓦纳总统博科会谈，两国建立全面战略合作伙伴关系</h3>
+        <p>会谈后两国元首共同见证签署落实全球安全倡议、共建"一带一路"、绿色矿产、卫生健康、人力资源等领域多项合作文件，双方发表关于建立全面战略合作伙伴关系的联合声明。博科表示，博方坚定奉行一个中国原则，反对"台独"分裂图谋。当日，习近平还会见多哥部长会议主席福雷。</p>
+        <div class="src"><span class="tag">人民网</span><span class="tag">新华社</span><span class="tag">人民日报</span></div>
+      </div>
+
+      <div class="item p0">
+        <div class="top"><span class="pri p0">P0</span><span class="cat">经济 · 金融</span></div>
+        <h3>1500 亿元特别国债投向中央金融机构，夯实资本根基</h3>
+        <p>财政部向多家中央金融机构注资：农行、中国进出口银行、中国人寿、中国人保、中国太平、中国信保、中国再保等获不同规模资本补充。业内认为，此举有利于增强金融机构服务实体经济与对外开放的资金供给能力和风险防控韧性，为稳增长提供坚实金融支持。</p>
+        <div class="src"><span class="tag">人民日报海外版</span><span class="tag">新华社</span></div>
+      </div>
+
+      <div class="item p1">
+        <div class="top"><span class="pri p1">P1</span><span class="cat">经济 · 科创</span></div>
+        <h3>中共中央、国务院印发《关于发展新质生产力的意见》</h3>
+        <p>这是"新质生产力"概念提出以来最高层级、最为系统的纲领性文件，围绕科技创新、科技与产业深度融合等五个方面部署 19 项重点举措，确立"创新主导、改革为要、因地制宜、先立后破"四条原则，创新主体叙事从"国家队"转向"企业当主角"。</p>
+        <div class="src"><span class="tag">中共中央</span><span class="tag">国务院</span><span class="tag">证券时报</span></div>
+      </div>
+
+      <div class="item p1">
+        <div class="top"><span class="pri p1">P1</span><span class="cat">两岸 · 经济</span></div>
+        <h3>首届"两岸创新发展周"在上海举行，聚焦"人工智能+"合作</h3>
+        <p>由国务院台办和上海市人民政府共同主办，千余名两岸嘉宾齐聚。国台办负责人表示，大陆市场空间广阔、产业体系完备、创新生态活跃，"十五五"规划将为两岸经济合作注入新动能；两岸在数智科技领域优势互补，加大合作正当其时。当日，话剧《寻味》担纲首届大湾区校园戏剧季开幕大戏。</p>
+        <div class="src"><span class="tag">中国台湾网</span><span class="tag">新华社</span><span class="tag">新浪财经</span></div>
+      </div>
+
+      <div class="item p1">
+        <div class="top"><span class="pri p1">P1</span><span class="cat">两岸 · 国防</span></div>
+        <h3>国防部、国台办批赖清德讲话，揭批"台独"分裂图谋</h3>
+        <p>针对台湾地区领导人赖清德第三次所谓"双十"讲话继续渲染"大陆威胁"，国防部新闻发言人指出，"台独"与台海和平水火不容，祖国统一是大势所趋、民心所向；国台办发言人表示，将坚持一个中国原则和"九二共识"，坚决打击"台独"分裂势力、反对外部势力干涉。</p>
+        <div class="src"><span class="tag">国防部</span><span class="tag">国台办</span><span class="tag">中华网</span></div>
+      </div>
+
+      <div class="item p1">
+        <div class="top"><span class="pri p1">P1</span><span class="cat">民生 · 楼市</span></div>
+        <h3>10 万亿"沉睡"公积金激活，全国超 40 地新政密集落地</h3>
+        <p>随着新修订的《住房公积金管理条例》实施，全国多地密集落地优化新政。深圳拟新增装修住房、支付物业费两类提取情形，并将无房职工租房提取比例阶段性由 65% 上调至 80%；南京、沈阳、重庆、长沙等地因地制宜扩容提取范围，公积金制度正从"买房还贷"向覆盖居住全周期支出重构。</p>
+        <div class="src"><span class="tag">央视财经</span><span class="tag">第一财经</span></div>
+      </div>
+
+      <div class="item p1">
+        <div class="top"><span class="pri p1">P1</span><span class="cat">外交 · 中美</span></div>
+        <h3>何立峰会见美中关系全国委员会负责人，外交部谈中美民间交往</h3>
+        <p>何立峰表示，两国元首同意构建"基于尊重、公平、对等的中美建设性战略稳定关系"，双方应共同落实好元首重要共识，为中美经贸合作与世界经济注入更多确定性和稳定性。外交部发言人表示，中方支持两国民间加强交往、开展人文交流。</p>
+        <div class="src"><span class="tag">人民网</span><span class="tag">新华社</span><span class="tag">中国经济网</span></div>
+      </div>
+
+      <div class="item p2">
+        <div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 就业</span></div>
+        <h3>中央机关及其直属机构 2027 年度考试录用公务员 10 月 14 日起报名</h3>
+        <p>本次国考报名于 10 月 14 日开始，是广大高校毕业生和社会人才关注的重要就业渠道。同期，前三季度全国城镇新增就业 1052 万人，完成全年目标 87.7%。</p>
+        <div class="src"><span class="tag">国家公务员局</span><span class="tag">新华社</span></div>
+      </div>
+
+      <div class="item p2">
+        <div class="top"><span class="pri p2">P2</span><span class="cat">文化 · 科技</span></div>
+        <h3>第十六届中国航展 12 月珠海举办，嫦娥五号、六号月壤将同框亮相</h3>
+        <p>本届航展 12 月 7 日至 13 日在广东珠海举办，参展装备超 3000 件，"首展""首秀"展品占比约 10%，主展区参展飞机超过 170 架，已有近 50 个国家和地区的超 1100 家企业参展。嫦娥五号、六号分别从月球正面和背面采回的珍贵月壤将同框亮相。</p>
+        <div class="src"><span class="tag">新华社</span><span class="tag">新华每日电讯</span><span class="tag">中国经济网</span></div>
+      </div>
+
+      <div class="item p2">
+        <div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 法治</span></div>
+        <h3>缅北涉我电诈犯罪集团案一审宣判，61 名被告人获刑</h3>
+        <p>长期在境外组织大规模跨境电信网络诈骗的犯罪集团案一审宣判，61 名被告人依法获刑，判决充分彰显对跨境电诈犯罪依法从严惩处的鲜明态度。同期，中央政法委印发意见严查危害食品安全犯罪，聚焦肉制品、校园食品等重点领域全链条打击。</p>
+        <div class="src"><span class="tag">央视新闻</span><span class="tag">新华社</span><span class="tag">腾讯新闻</span></div>
+      </div>
+
+      <div class="item p2">
+        <div class="top"><span class="pri p2">P2</span><span class="cat">文化 · 教育</span></div>
+        <h3>2026 世界职业技术教育发展大会 10 月 15—17 日在天津举行</h3>
+        <p>大会将发布《世界职业技术教育标准框架》，我国牵头研制的相关国际职业教育标准即将发布。世界职业院校技能大赛覆盖 78 国、9391 支队伍、3.6 万名选手，规模创历史新高。</p>
+        <div class="src"><span class="tag">教育部</span><span class="tag">人民日报</span></div>
+      </div>
+
+      <div class="item p2">
+        <div class="top"><span class="pri p2">P2</span><span class="cat">时政 · 生态</span></div>
+        <h3>第三轮第七批中央生态环境保护督察启动，5 个督察组进驻</h3>
+        <p>2 个例行督察组分别进驻住房城乡建设部、农业农村部；3 个专项督察组对湖北、湖南、广西、重庆、四川、贵州、云南 7 省区市开展溶洞天坑山谷污染问题专项督察。同期，我国矿产资源重划"家底"，《矿产资源目录》发布。</p>
+        <div class="src"><span class="tag">新华社</span><span class="tag">央视新闻</span></div>
+      </div>
+
+      <div class="item p2">
+        <div class="top"><span class="pri p2">P2</span><span class="cat">民生 · 大湾区</span></div>
+        <h3>皇岗口岸焕新开通，湾区融合再提速</h3>
+        <p>历时 7 年重建的皇岗口岸正式开通运行，作为全球规模最大的陆路口岸单体建筑，推行"合作查验、一次放行"通关模式，旅客通关时长由约 30 分钟压缩至约 5 分钟。同期，粤港澳大湾区（广州—香港）首条零碳集装箱航线正式投入运营。</p>
+        <div class="src"><span class="tag">中新社</span><span class="tag">央广网</span><span class="tag">新华社</span></div>
+      </div>
+
+      <div class="item p3">
+        <div class="top"><span class="pri p3">P3</span><span class="cat">文化 · 消费</span></div>
+        <h3>"China Haul"成海外新潮流，中国好物圈粉全球消费者</h3>
+        <p>海外社交平台"China Haul"（中国购物开箱）相关视频走红，科技产品、国潮服饰、美妆好物、中式养生产品成为海外旅客来华必淘清单。专家指出，这折射出中国商品出海在产品结构、传播路径上的新变化，国货正由企业主动推介转为海外消费者自主发掘。</p>
+        <div class="src"><span class="tag">人民日报海外版</span><span class="tag">环球网</span></div>
+      </div>
+
+      <div class="item p3">
+        <div class="top"><span class="pri p3">P3</span><span class="cat">民生 · 社保</span></div>
+        <h3>织密灵活就业人员社保网络，多方共担责任格局加快构建</h3>
+        <p>灵活就业人员相关社保改革举措持续落地，陆续允许自主选定参保地，新就业形态职业伤害保障试点扩围，以商业保险等市场手段补齐短板。民政部等三部门提出开发农村助老公益性岗位，按规定给予岗位补贴。</p>
+        <div class="src"><span class="tag">经济日报</span><span class="tag">民政部</span></div>
+      </div>
+
+      <div class="item p3">
+        <div class="top"><span class="pri p3">P3</span><span class="cat">文化 · 荣誉</span></div>
+        <h3>上海获首届世界知识产权组织"创新城市"奖项</h3>
+        <p>上海获首届世界知识产权组织"创新城市"奖项，体现我国城市创新能力与知识产权保护水平获国际认可。同期，我国牵头制定的电气继电器线圈特性测试国际标准发布，标准国际化步伐持续加快。</p>
+        <div class="src"><span class="tag">新华社</span><span class="tag">中国新闻网</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 来源矩阵 -->
+  <section class="sec">
+    <div class="sec-h"><span class="bar"></span><h2>来源矩阵</h2><span class="note">多源交叉核验 · 共 11 类信源</span></div>
+    <table>
+      <tr><th>来源</th><th>类型</th><th>关键选题</th><th>优先级</th></tr>
+      <tr><td>央视新闻 / 新闻联播</td><td>官媒综合</td><td>卫生与健康大会 · 广交会 · 电诈案宣判</td><td><span class="cnt">P0–P2</span></td></tr>
+      <tr><td>新华社</td><td>通讯社</td><td>中博元首会谈 · 航展 · 矿产资源目录</td><td><span class="cnt">P0–P2</span></td></tr>
+      <tr><td>人民日报（头版/时评）</td><td>党报</td><td>卫生与健康大会 · 投资优化 · 无障碍环境</td><td><span class="cnt">P0–P2</span></td></tr>
+      <tr><td>中共中央 / 国务院</td><td>官方文件</td><td>《关于发展新质生产力的意见》</td><td><span class="cnt">P1</span></td></tr>
+      <tr><td>财政部 / 人民日报海外版</td><td>部委发布</td><td>1500 亿特别国债注资中央金融机构</td><td><span class="cnt">P0</span></td></tr>
+      <tr><td>国台办 / 国防部</td><td>官方发布</td><td>两岸创新发展周 · 批赖清德讲话</td><td><span class="cnt">P1</span></td></tr>
+      <tr><td>商务部 / 中国对外贸易中心</td><td>部委发布</td><td>第 140 届广交会 · 服务进出口</td><td><span class="cnt">P0–P2</span></td></tr>
+      <tr><td>人力资源和社会保障部</td><td>部委发布</td><td>前三季度新增就业 1052 万 · 国考报名</td><td><span class="cnt">P1–P2</span></td></tr>
+      <tr><td>央视财经 / 第一财经</td><td>财经垂直</td><td>10 万亿公积金激活 · 电商物流指数</td><td><span class="cnt">P1–P2</span></td></tr>
+      <tr><td>中新社 / 央广网 / 中国台湾网</td><td>市场化媒体</td><td>皇岗口岸 · 两岸创新发展周</td><td><span class="cnt">P1–P2</span></td></tr>
+      <tr><td>证券时报 / 环球网 / 经济日报</td><td>财经·综合</td><td>新质生产力解读 · "China Haul" · 灵活就业社保</td><td><span class="cnt">P2–P3</span></td></tr>
+    </table>
+  </section>
+
+  <!-- 双榜 -->
+  <section class="sec">
+    <div class="sec-h"><span class="bar"></span><h2>热度榜单</h2><span class="note">基于今晨全网搜索与转载热度整理预估</span></div>
+    <div class="topgrid">
+      <div class="toplist">
+        <h4><span class="ic">🔥</span>早间阅读量 TOP6</h4>
+        <div class="row"><div class="rk">1</div><div><div class="tt">全国卫生与健康大会召开</div><div class="ds">部署"十五五"健康中国建设</div></div><span class="heat">热度 ★★★★★</span></div>
+        <div class="row"><div class="rk">2</div><div><div class="tt">第 140 届广交会明日开幕</div><div class="ds">创办 70 周年 · 3.2 万家企业参展</div></div><span class="heat">热度 ★★★★★</span></div>
+        <div class="row"><div class="rk">3</div><div><div class="tt">习近平同博茨瓦纳总统会谈</div><div class="ds">两国建立全面战略合作伙伴关系</div></div><span class="heat">热度 ★★★★☆</span></div>
+        <div class="row"><div class="rk">4</div><div><div class="tt">1500 亿特别国债注资中央金融机构</div><div class="ds">多家银行、险企获资本补充</div></div><span class="heat">热度 ★★★★☆</span></div>
+        <div class="row"><div class="rk">5</div><div><div class="tt">10 万亿公积金激活，多地新政落地</div><div class="ds">超 40 地优化提取 · 覆盖居住全周期</div></div><span class="heat">热度 ★★★★☆</span></div>
+        <div class="row"><div class="rk">6</div><div><div class="tt">国考 10 月 14 日起报名</div><div class="ds">2027 年度中央机关招录报名启动</div></div><span class="heat">热度 ★★★☆☆</span></div>
+      </div>
+      <div class="toplist">
+        <h4><span class="ic">🎬</span>视频号高热 TOP6</h4>
+        <div class="row"><div class="rk">1</div><div><div class="tt">皇岗口岸"5 分钟通关"实拍</div><div class="ds">"合作查验、一次放行"通关体验</div></div><span class="heat">传播 ★★★★★</span></div>
+        <div class="row"><div class="rk">2</div><div><div class="tt">嫦娥五号、六号月壤将同框亮相</div><div class="ds">正面与背面月壤差异近距离观察</div></div><span class="heat">传播 ★★★★★</span></div>
+        <div class="row"><div class="rk">3</div><div><div class="tt">广交会 70 周年：中国制造"破界"</div><div class="ds">从代工出海到智造供给的跃迁</div></div><span class="heat">传播 ★★★★☆</span></div>
+        <div class="row"><div class="rk">4</div><div><div class="tt">老外"China Haul"开箱中国好物</div><div class="ds">国潮服饰、AI 眼镜、中式养生走红</div></div><span class="heat">传播 ★★★★☆</span></div>
+        <div class="row"><div class="rk">5</div><div><div class="tt">话剧《寻味》讲两岸血脉亲情</div><div class="ds">大湾区校园戏剧季开幕大戏</div></div><span class="heat">传播 ★★★☆☆</span></div>
+        <div class="row"><div class="rk">6</div><div><div class="tt">秋粮收获过六成 · 田间丰收图景</div><div class="ds">各地抢收保颗粒归仓</div></div><span class="heat">传播 ★★★☆☆</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 两岸国际速览 -->
+  <section class="sec">
+    <div class="sec-h"><span class="bar"></span><h2>两岸 · 国际速览</h2><span class="note">昨夜今晨要点</span></div>
+    <div class="brief">
+      <ul>
+        <li><b>两岸交流：</b>首届"两岸创新发展周"在上海举行，两岸在数智科技领域优势互补，加大"人工智能+"合作正当其时。</li>
+        <li><b>台海立场：</b>国台办、国防部批赖清德"双十"讲话，"台独"与台海和平水火不容，祖国统一是大势所趋。</li>
+        <li><b>中美关系：</b>何立峰会见美中关系全国委员会负责人，强调落实元首共识，构建"基于尊重、公平、对等的中美建设性战略稳定关系"。</li>
+        <li><b>涉台表态：</b>外交部回应美方涉台言论，敦促美方恪守一个中国原则和中美三个联合公报，慎重处理台湾问题。</li>
+        <li><b>美以伊局势：</b>美以商讨重启对伊军事行动，伊朗称美军海上力量大幅后撤；霍尔木兹海峡原油运输持续承压。</li>
+        <li><b>中东冲突：</b>胡塞武装称沙特 24 小时内发动 104 次袭击，沙特主导联军称打击胡塞军事补给设施，多家航司暂停航班。</li>
+        <li><b>欧盟对俄：</b>欧盟对俄罗斯新增大规模制裁，涉及能源、金融等多个领域，俄方表示将采取反制措施回应。</li>
+        <li><b>俄乌动态：</b>泽连斯基向美方提交新一轮会晤方案，提议近日开展会谈；美总统称俄乌同意"能源停火"。</li>
+        <li><b>国际财经：</b>IMF 上调 2026 年世界经济增长预期至 3.1%；美以伊战事推高航运成本，超大型油轮运费升至 60 年来最高。</li>
+        <li><b>其他要闻：</b>日本记者在俄远东被拘；法国数百家超市制冷系统遭网络攻击；朝鲜进行战术弹道导弹试射；巴基斯坦发生列车脱轨事故。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <b>说明：</b>本看板内容基于 2026 年 10 月 14 日早间公开权威媒体报道（央视新闻、新华社、人民日报、人民网、国台办、国防部、财政部、第一财经、中国台湾网、中新社等）整理，KPI 数据以上述官方发布口径为准；热度榜单为基于搜索与转载热度的预估排序，非平台官方统计。内容仅供晨间快读参考，不构成任何投资建议。
+  </div>
+
+  <footer>
+    晨间新闻看板 · 第 38 期 · 2026-10-14 · 历史存档见 <a href="archive_2026-10-14.html" style="color:var(--blue)">今日存档</a>
+  </footer>
+</div>
+</body>
+</html>

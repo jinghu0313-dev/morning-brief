@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨间新闻看板 · 2026-10-16（第40期）</title>
+<style>
+:root{
+  --bg:#0b0f17; --bg2:#111725; --card:#151d2c; --card2:#1a2334;
+  --line:#243044; --line2:#2f3d54;
+  --txt:#e8eef7; --txt2:#a9b8cf; --txt3:#75859e;
+  --accent:#4da3ff; --accent2:#7c5cff;
+  --p0:#ff4d6d; --p1:#ff9f43; --p2:#4dd4ac; --p3:#6b8cae;
+  --up:#ff4d4d; --down:#00c48c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:radial-gradient(1200px 600px at 15% -10%, #16233a 0%, transparent 60%),
+             radial-gradient(900px 500px at 100% 0%, #1d1633 0%, transparent 55%),
+             var(--bg);
+  color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  line-height:1.65; padding:24px 16px 60px;
+}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* 头部 */
+.hero{
+  border:1px solid var(--line); border-radius:18px; padding:26px 28px;
+  background:linear-gradient(135deg,rgba(77,163,255,.12),rgba(124,92,255,.10));
+  backdrop-filter:blur(6px); position:relative; overflow:hidden;
+}
+.hero:before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px);pointer-events:none}
+.hero h1{font-size:30px;letter-spacing:.5px;font-weight:800}
+.hero h1 span{background:linear-gradient(90deg,#4da3ff,#7c5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.meta{margin-top:10px;color:var(--txt2);font-size:14px;display:flex;flex-wrap:wrap;gap:8px 18px}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--txt2)}
+.chip.b{color:#cfe3ff;border-color:#2c4straw}
+.chip.b{color:#cfe3ff;border-color:#2c4a72;background:rgba(77,163,255,.12)}
+
+/* 版本提示条 */
+.banner{
+  margin-top:14px;border-radius:12px;padding:12px 16px;font-size:13.5px;
+  border:1px solid rgba(255,159,67,.35);background:rgba(255,159,67,.10);color:#ffd7a8;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.banner b{color:#ffb765}
+.banner .tag{flex:none;background:rgba(255,159,67,.2);border-radius:6px;padding:1px 8px;font-size:12px;color:#ffc98a}
+
+/* 区块 */
+section{margin-top:30px}
+.h2{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.h2 i{width:4px;height:20px;border-radius:3px;background:linear-gradient(180deg,#4da3ff,#7c5cff);display:block}
+.h2 h2{font-size:19px;font-weight:700;letter-spacing:.3px}
+.h2 small{color:var(--txt3);font-size:12.5px;font-weight:400}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--card)}
+.kpi .lab{font-size:12.5px;color:var(--txt3);letter-spacing:.3px}
+.kpi .val{font-size:26px;font-weight:800;margin:6px 0 2px;letter-spacing:.5px}
+.kpi .sub{font-size:12px;color:var(--txt2)}
+.kpi.a .val{color:#ff8fa3}.kpi.b .val{color:#ffc46b}
+.kpi.c .val{color:#6fe3c0}.kpi.d .val{color:#8fc4ff}
+.kpi.e .val{color:#c7a6ff}.kpi.f .val{color:#9fb4cd}
+
+/* 选题卡 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.item{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:16px 18px;position:relative;overflow:hidden}
+.item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px}
+.item.p0:before{background:var(--p0)}.item.p1:before{background:var(--p1)}
+.item.p2:before{background:var(--p2)}.item.p3:before{background:var(--p3)}
+.item .top{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.badge{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+.b0{color:#ffd0d9;background:rgba(255,77,109,.18);border:1px solid rgba(255,77,109,.4)}
+.b1{color:#ffe0bb;background:rgba(255,159,67,.16);border:1px solid rgba(255,159,67,.4)}
+.b2{color:#bff3e3;background:rgba(77,212,172,.14);border:1px solid rgba(77,212,172,.4)}
+.b3{color:#cfdcec;background:rgba(107,140,174,.16);border:1px solid rgba(107,140,174,.4)}
+.cat{font-size:11.5px;color:var(--txt3);border:1px solid var(--line2);border-radius:6px;padding:1px 7px}
+.item h3{font-size:15.5px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.item p{font-size:13.5px;color:var(--txt2)}
+.src{margin-top:10px;padding-top:9px;border-top:1px dashed var(--line2);font-size:12px;color:var(--txt3);display:flex;flex-wrap:wrap;gap:6px}
+.src b{color:var(--txt3);font-weight:600}
+.src em{font-style:normal;color:#9fb8d8;background:rgba(255,255,255,.04);border-radius:5px;padding:1px 7px}
+
+/* 表格 */
+.tblwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:13.2px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--card2);color:var(--txt2);font-weight:600;font-size:12.5px;letter-spacing:.3px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+td.n{color:var(--txt3);font-variant-numeric:tabular-nums}
+.mono{font-variant-numeric:tabular-nums}
+
+/* 排行 */
+.rank{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.rk{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.rk .hd{padding:12px 16px;background:var(--card2);border-bottom:1px solid var(--line);font-size:14px;font-weight:700;display:flex;justify-content:space-between}
+.rk .hd small{color:var(--txt3);font-weight:400;font-size:12px}
+.rk ol{list-style:none;padding:8px 8px 12px}
+.rk li{display:flex;gap:11px;padding:9px 10px;border-radius:9px}
+.rk li:hover{background:rgba(255,255,255,.03)}
+.rk .no{flex:none;width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:rgba(255,255,255,.07);color:var(--txt2)}
+.rk li:nth-child(1) .no{background:linear-gradient(135deg,#ff4d6d,#ff8a5b);color:#fff}
+.rk li:nth-child(2) .no{background:linear-gradient(135deg,#ff9f43,#ffc46b);color:#2a1a00}
+.rk li:nth-child(3) .no{background:linear-gradient(135deg,#4dd4ac,#7ee6c4);color:#05271d}
+.rk .bd{flex:1;min-width:0}
+.rk .t{font-size:13.6px;font-weight:600;line-height:1.45}
+.rk .d{font-size:12.2px;color:var(--txt3);margin-top:3px}
+.rk .m{margin-left:auto;flex:none;font-size:12px;color:#8fc4ff;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:2px}
+
+/* 两岸速览 */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.news{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:16px 18px}
+.news .k{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.news .kt{font-size:14.5px;font-weight:700}
+.news ul{list-style:none}
+.news li{font-size:13.3px;color:var(--txt2);padding:7px 0 7px 14px;border-bottom:1px dashed var(--line2);position:relative;line-height:1.6}
+.news li:last-child{border-bottom:none}
+.news li:before{content:"";position:absolute;left:0;top:15px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.news li b{color:var(--txt);font-weight:600}
+.news .s{color:var(--txt3);font-size:11.8px}
+
+footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--txt3);font-size:12.5px;text-align:center;line-height:1.9}
+footer a{color:#8fc4ff;text-decoration:none}
+@media (max-width:640px){
+  .hero h1{font-size:22px}
+  .kpi .val{font-size:22px}
+  body{padding:16px 10px 40px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>晨间新闻看板 · <span>2026-10-16</span></h1>
+    <div class="meta">
+      <span>第 <b>40</b> 期（首期 2026-09-07）</span>
+      <span>星期五</span>
+      <span>生成时间 09:20 (GMT+8)</span>
+      <span class="chip">大陆民生</span>
+      <span class="chip">时政外交</span>
+      <span class="chip">文化</span>
+      <span class="chip">经济</span>
+      <span class="chip b">两岸 · 国际</span>
+    </div>
+  </div>
+
+  <div class="banner">
+    <span class="tag">版本提示</span>
+    <div>
+      本版为 <b>v2.4</b>：新增「两岸 · 国际速览」独立分区；P0 选题同步接入财经盘面口径（上证指数、亚太市场、美联储加息预期）；
+      TOP 榜热度数据来自公开报道的播放/点赞量级，为<b>量级参考值</b>而非平台后台精确数。
+      内容全部基于当日公开报道，未作主观推演；涉台表述严格遵循一个中国原则。
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <section>
+    <div class="h2"><i></i><h2>KPI 概览</h2><small>当日关键指标速读</small></div>
+    <div class="kpis">
+      <div class="kpi a"><div class="lab">头条选题</div><div class="val">21</div><div class="sub">P0 4 / P1 6 / P2 6 / P3 5</div></div>
+      <div class="kpi b"><div class="lab">覆盖信源</div><div class="val">17</div><div class="sub">中央媒体 + 部委 + 地方党媒</div></div>
+      <div class="kpi c"><div class="lab">广交会参展企业</div><div class="val">3.2万</div><div class="sub">第140届 · 首日境外采购商约8.6万</div></div>
+      <div class="kpi d"><div class="lab">上证指数</div><div class="val">3707.48</div><div class="sub">10月15日收盘 · 险守3700点</div></div>
+      <div class="kpi e"><div class="lab">美国9月CPI同比</div><div class="val">3.7%</div><div class="sub">创5个月新高 · 超预期3.6%</div></div>
+      <div class="kpi f"><div class="lab">银发经济规模</div><div class="val">9万亿</div><div class="sub">2025年 · 2035年预计30万亿</div></div>
+    </div>
+  </section>
+
+  <!-- P0 -->
+  <section>
+    <div class="h2"><i></i><h2>P0 · 必读头条</h2><small>最高优先级 · 政策与大盘</small></div>
+    <div class="cards">
+      <div class="item p0">
+        <div class="top"><span class="badge b0">P0</span><span class="cat">时政 · 党建</span></div>
+        <h3>《求是》第20期发表重要文章《以更高标准、更实举措推进全面从严治党》</h3>
+        <p>16日出版的第20期《求是》杂志刊发该文，为当日时政头条。同期人民锐评就「公考围岗」发声，指出其并非偶发案例而是有组织舞弊行为。</p>
+        <div class="src"><b>来源</b><em>求是网</em><em>央视新闻</em><em>人民日报</em></div>
+      </div>
+      <div class="item p0">
+        <div class="top"><span class="badge b0">P0</span><span class="cat">经济 · 外贸</span></div>
+        <h3>第140届广交会开展：3.2万家企业参展，首日208个国家和地区约8.6万境外采购商到会</h3>
+        <p>15日在广州开展，展期至11月4日。人民日报头版刊文《扩大高水平对外开放 建设开放型世界经济》，聚焦70年、140届广交会与制度型开放。</p>
+        <div class="src"><b>来源</b><em>人民日报</em><em>央视新闻</em><em>人民网</em></div>
+      </div>
+      <div class="item p0">
+        <div class="top"><span class="badge b0">P0</span><span class="cat">外交 · 互联互通</span></div>
+        <h3>中朝新鸭绿江大桥正式开通</h3>
+        <p>15日正式开通。该桥为两国互联互通重要设施，开通后将进一步促进双边经贸交流与人员往来、增进两国人民福祉。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em><em>今日头条（央视新闻号）</em></div>
+      </div>
+      <div class="item p0">
+        <div class="top"><span class="badge b0">P0</span><span class="cat">财经 · 全球市场</span></div>
+        <h3>美国9月CPI同比3.7%超预期，亚太股市集体重挫，A股沪指险守3700点</h3>
+        <p>美国9月CPI同比涨3.7%创5个月新高、环比0.6%，能源价格同比涨20.4%；CME数据显示10月加息25bp概率一度冲至约50%。15日韩国股市一度触发熔断、日股大跌；上证指数收报3707.48点。证监会10日召开座谈会提出「持续加强稳市机制建设」「研究储备更多增量政策工具」。</p>
+        <div class="src"><b>来源</b><em>新浪财经/东方财富</em><em>21世纪经济报道</em><em>许戈投资</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P1 -->
+  <section>
+    <div class="h2"><i></i><h2>P1 · 重点跟进</h2><small>民生政策与治理</small></div>
+    <div class="cards">
+      <div class="item p1">
+        <div class="top"><span class="badge b1">P1</span><span class="cat">民生 · 质量安全</span></div>
+        <h3>四部门公布婴幼儿纸尿裤甲酰胺问题调查结果：400批次样品均未检出</h3>
+        <p>市场监管总局等四部门15日公布：368批次成品样品与32批次分部位样品均未检出甲酰胺。山东省卫健委同日通报，多人因该问题被处理。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em><em>山东省卫健委</em></div>
+      </div>
+      <div class="item p1">
+        <div class="top"><span class="badge b1">P1</span><span class="cat">民生 · 房地产</span></div>
+        <h3>深圳出台商品住房销售新规</h3>
+        <p>15日发布，涵盖完善商品住房预售管理、有序推进现房销售、优化土地供应管理、强化质量监管与市场规范等内容。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em></div>
+      </div>
+      <div class="item p1">
+        <div class="top"><span class="badge b1">P1</span><span class="cat">教育 · 科技</span></div>
+        <h3>教育部公布首批全国中小学科技教育实验区和实验校</h3>
+        <p>共134个科技教育实验区、1246所科技教育实验校入选，为中小学科技教育提供示范载体。</p>
+        <div class="src"><b>来源</b><em>教育部</em><em>央视新闻</em></div>
+      </div>
+      <div class="item p1">
+        <div class="top"><span class="badge b1">P1</span><span class="cat">时政 · 城市治理</span></div>
+        <h3>APEC第三十三次领导人非正式会议11月18—19日在深圳举办</h3>
+        <p>会议期间倡导绿色出行、居家办公、错峰出行、带薪休假；地铁视情况加密班次、延长运营时间，新增50条公交地铁接驳专线。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em></div>
+      </div>
+      <div class="item p1">
+        <div class="top"><span class="badge b1">P1</span><span class="cat">监管 · 消费</span></div>
+        <h3>国家药监局发布《牙膏分类目录》，功效分为八个类别</h3>
+        <p>15日发布，为牙膏管理提供明确技术指引，维护消费者口腔健康和合法权益。</p>
+        <div class="src"><b>来源</b><em>国家药监局</em><em>央视新闻</em></div>
+      </div>
+      <div class="item p1">
+        <div class="top"><span class="badge b1">P1</span><span class="cat">网络治理</span></div>
+        <h3>中央网信办等四部门开展为期2个月的网络涉军不当营销和炒作信息专项整治</h3>
+        <p>通知决定自10月起集中整治网络涉军不当营销与炒作信息。</p>
+        <div class="src"><b>来源</b><em>解放军报</em><em>求是网</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P2 -->
+  <section>
+    <div class="h2"><i></i><h2>P2 · 延展选题</h2><small>文化、科技、产业与社会</small></div>
+    <div class="cards">
+      <div class="item p2">
+        <div class="top"><span class="badge b2">P2</span><span class="cat">文化 · 遗产</span></div>
+        <h3>我国再添4处世界灌溉工程遗产</h3>
+        <p>河南沁河广利渠（五龙口）、甘肃讨赖河绿洲灌溉系统、江西上饶广信黄沙渠、福建长泰龙津古陂灌溉工程入选。</p>
+        <div class="src"><b>来源</b><em>自贡观察</em><em>央视新闻</em></div>
+      </div>
+      <div class="item p2">
+        <div class="top"><span class="badge b2">P2</span><span class="cat">科技 · 基础研究</span></div>
+        <h3>我国科学家发现全新侏罗纪鸟类化石「杨源𬸚𬸦」</h3>
+        <p>产于福建政和，生活在约1.5亿年前，体重约821克，前肢极短、不会飞但擅奔跑，具恐爪龙类特有的「杀戮之爪」，可能为食肉性鸟类。成果14日在线发表于《自然》。</p>
+        <div class="src"><b>来源</b><em>科技日报</em><em>新华社</em></div>
+      </div>
+      <div class="item p2">
+        <div class="top"><span class="badge b2">P2</span><span class="cat">文化 · 影视</span></div>
+        <h3>大型纪录片《伟大远征》央视综合频道首播</h3>
+        <p>为纪念中国工农红军长征胜利90周年，15日起在央视综合频道20点档首播，国防军事频道重播。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em></div>
+      </div>
+      <div class="item p2">
+        <div class="top"><span class="badge b2">P2</span><span class="cat">经济 · 消费</span></div>
+        <h3>银发经济站上重阳节点：规模已破9万亿，2035年预计30万亿</h3>
+        <p>2025年我国60岁及以上老年人口达3.23亿人（占23%），预计2035年前后突破4亿人、占比超30%。北京60岁及以上常住老年人口528.8万人，占比24.3%。评论指出银发经济不能只算眼前收益账，需防「适老」旗号下的高价推销与虚假康养。</p>
+        <div class="src"><b>来源</b><em>经济日报</em><em>北京日报</em></div>
+      </div>
+      <div class="item p2">
+        <div class="top"><span class="badge b2">P2</span><span class="cat">三农 · 文旅</span></div>
+        <h3>乡村大集走红：2025年休闲农业营业收入达9500亿元</h3>
+        <p>人民日报「三农」观察指出，传统大集已成农文旅融合新载体，从「走红」到「长红」需避免「千人一面」，完善停车、旅游厕所等基础设施，并把产业链增值收益留给农民。</p>
+        <div class="src"><b>来源</b><em>人民日报</em><em>农业农村部（数据）</em></div>
+      </div>
+      <div class="item p2">
+        <div class="top"><span class="badge b2">P2</span><span class="cat">科技 · 产业</span></div>
+        <h3>C919通航27座城市，安全运送旅客超840万人次</h3>
+        <p>同日披露：我国地理信息产业总产值超9000亿元，已构建完整产业链；自动化码头应用规模、技术水平、作业效率居世界前列。</p>
+        <div class="src"><b>来源</b><em>交通运输部</em><em>自贡观察</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P3 -->
+  <section>
+    <div class="h2"><i></i><h2>P3 · 备选储备</h2><small>国际文化与生态安全</small></div>
+    <div class="cards">
+      <div class="item p3">
+        <div class="top"><span class="badge b3">P3</span><span class="cat">生态 · 安全</span></div>
+        <h3>蒙古国草原火灾被成功堵截于中蒙边境一线</h3>
+        <p>截至15日12时，火线未烧入我国境内，内蒙古锡林郭勒盟、兴安盟、呼伦贝尔市边境一线可视范围内无烟无火。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em></div>
+      </div>
+      <div class="item p3">
+        <div class="top"><span class="badge b3">P3</span><span class="cat">国际 · 文化</span></div>
+        <h3>卢浮宫馆长警告：若得不到修缮改造，可能不得不对公众关闭</h3>
+        <p>法国卢浮宫博物馆馆长日前表示，如不进行修缮、调整和改造，其地位将迅速下降。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em></div>
+      </div>
+      <div class="item p3">
+        <div class="top"><span class="badge b3">P3</span><span class="cat">国际 · 航天</span></div>
+        <h3>美货运「龙」飞船与国际空间站对接，运送约2860公斤物资</h3>
+        <p>美国东部时间15日10时27分完成自动对接，将停留至11月中旬，为SpaceX为NASA执行的第35次国际空间站补给任务。</p>
+        <div class="src"><b>来源</b><em>新华社</em></div>
+      </div>
+      <div class="item p3">
+        <div class="top"><span class="badge b3">P3</span><span class="cat">国际 · 人物</span></div>
+        <h3>粮农组织表彰「百位巾帼英雄」，我国殷玉珍、董敏芳、余锦秀获殊荣</h3>
+        <p>当地时间15日，联合国粮农组织表彰在农业、粮食体系和农村发展领域作出突出贡献者，中国治沙人殷玉珍在列。</p>
+        <div class="src"><b>来源</b><em>央视新闻</em></div>
+      </div>
+      <div class="item p3">
+        <div class="top"><span class="badge b3">P3</span><span class="cat">文化 · 非遗</span></div>
+        <h3>第四届中国非物质文化遗产保护年会配套活动启幕</h3>
+        <p>10月16日12时至18日13时，辽宁朝阳在南北塔广场、慕容街、市非遗馆、市群众艺术馆开启「五好非遗大集」，以拍照打卡、全域集章互动形式呈现。另，渤海已通5G。</p>
+        <div class="src"><b>来源</b><em>东北新闻网</em><em>人民网</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 来源矩阵 -->
+  <section>
+    <div class="h2"><i></i><h2>来源矩阵</h2><small>当日采用信源与命中情况</small></div>
+    <div class="tblwrap">
+      <table>
+        <thead>
+          <tr><th style="width:46px">#</th><th>信源</th><th>类型</th><th>命中条数</th><th>主要覆盖领域</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">1</td><td>央视新闻</td><td>中央广电媒体</td><td class="mono">9</td><td>时政、民生、国际、气象</td><td>正常</td></tr>
+          <tr><td class="n">2</td><td>新华社</td><td>国家通讯社</td><td class="mono">4</td><td>国际外交、科技、人物</td><td>正常</td></tr>
+          <tr><td class="n">3</td><td>人民日报 / 人民网</td><td>中央党媒</td><td class="mono">4</td><td>头版时政、外贸、三农</td><td>正常</td></tr>
+          <tr><td class="n">4</td><td>求是网</td><td>理论刊物</td><td class="mono">2</td><td>党建理论、网络治理</td><td>正常</td></tr>
+          <tr><td class="n">5</td><td>经济日报</td><td>中央财经媒体</td><td class="mono">2</td><td>银发经济、信托与养老金融</td><td>正常</td></tr>
+          <tr><td class="n">6</td><td>科技日报</td><td>中央科技媒体</td><td class="mono">2</td><td>古生物、商业航天</td><td>正常</td></tr>
+          <tr><td class="n">7</td><td>解放军报</td><td>军方媒体</td><td class="mono">2</td><td>涉军网络治理、安保动向</td><td>正常</td></tr>
+          <tr><td class="n">8</td><td>中国台湾网 / 国台办</td><td>涉台权威渠道</td><td class="mono">2</td><td>两岸关系</td><td>正常</td></tr>
+          <tr><td class="n">9</td><td>外交部</td><td>部委发布</td><td class="mono">1</td><td>涉日历史问题回应</td><td>正常</td></tr>
+          <tr><td class="n">10</td><td>教育部 / 国家药监局 / 市场监管总局</td><td>部委发布</td><td class="mono">3</td><td>教育科技、牙膏分类、质量抽检</td><td>正常</td></tr>
+          <tr><td class="n">11</td><td>新浪财经 / 东方财富</td><td>财经资讯平台</td><td class="mono">2</td><td>通胀、加息预期、亚太盘面</td><td>正常</td></tr>
+          <tr><td class="n">12</td><td>21世纪经济报道</td><td>财经媒体</td><td class="mono">1</td><td>证监会座谈会、稳市机制</td><td>正常</td></tr>
+          <tr><td class="n">13</td><td>今日头条（媒体号聚合）</td><td>聚合平台</td><td class="mono">4</td><td>民生、三农、文旅、娱乐</td><td>正常</td></tr>
+          <tr><td class="n">14</td><td>自贡观察 / 东北新闻网</td><td>地方党媒</td><td class="mono">3</td><td>地方资讯、非遗、科技快讯</td><td>正常</td></tr>
+          <tr><td class="n">15</td><td>北京日报</td><td>地方党媒</td><td class="mono">1</td><td>智慧养老、老龄产业</td><td>正常</td></tr>
+          <tr><td class="n">16</td><td>俄罗斯卫星通讯社</td><td>外媒（中文版）</td><td class="mono">1</td><td>美台无人机合作动向</td><td>交叉核验后采用</td></tr>
+          <tr><td class="n">17</td><td>中评社 / 中国台湾网评论</td><td>涉台评论</td><td class="mono">1</td><td>岛内政情观察</td><td>观点标注来源</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 阅读量 TOP6 -->
+  <section>
+    <div class="h2"><i></i><h2>早间阅读量 TOP6</h2><small>依据公开报道的播放/点赞量级排列</small></div>
+    <div class="rank">
+      <div class="rk">
+        <div class="hd"><span>全网图文 / 短内容热度</span><small>量级参考</small></div>
+        <ol>
+          <li><span class="no">1</span><span class="bd"><div class="t">AI短剧梗「贵是贵了点，但吃了不烧心」</div><div class="d">抖音话题播放量破20亿，数十万人参与，蜜雪冰城等品牌号跟进二创</div></span><span class="m">20亿+</span></li>
+          <li><span class="no">2</span><span class="bd"><div class="t">民间二创「2026版西游记」职场梗</div><div class="d">白龙马行车记录仪视角，唐僧=画饼领导、悟空=内卷员工，话题播放破5亿</div></span><span class="m">5亿+</span></li>
+          <li><span class="no">3</span><span class="bd"><div class="t">第140届广交会开展</div><div class="d">3.2万家企业参展、首日约8.6万境外采购商到会，人民日报头版报道</div></span><span class="m">头版级</span></li>
+          <li><span class="no">4</span><span class="bd"><div class="t">美国9月CPI超预期，全球AI资产重估</div><div class="d">纳指跌1.9%、韩国股市一度熔断、日本收跌近5%，A股跳空下杀后沪指收长下影</div></span><span class="m">财经刷屏</span></li>
+          <li><span class="no">5</span><span class="bd"><div class="t">婴幼儿纸尿裤甲酰胺调查结果公布</div><div class="d">400批次样品均未检出，山东通报多人被处理</div></span><span class="m">民生高关注</span></li>
+          <li><span class="no">6</span><span class="bd"><div class="t">家长被要求拍1小时辅导作业视频上传</div><div class="d">泸州市江阳区教体局责令学校整改，取消强制拍照上传等规定</div></span><span class="m">教育热议</span></li>
+        </ol>
+      </div>
+      <div class="rk">
+        <div class="hd"><span>视频号高热 TOP6</span><small>短视频 / 纪录片</small></div>
+        <ol>
+          <li><span class="no">1</span><span class="bd"><div class="t">江苏启东老宅婚礼：新人送客后对视泪崩</div><div class="d">新郎一句「新婚快乐」，摄影师记录；异地相守两年多，收获大量点赞转发</div></span><span class="m">86万赞</span></li>
+          <li><span class="no">2</span><span class="bd"><div class="t">「不烧心」系列AI短剧二创合辑</div><div class="d">同一模板换皮复制，网友以玩梗方式反讽内容同质化</div></span><span class="m">20亿+</span></li>
+          <li><span class="no">3</span><span class="bd"><div class="t">《文博日历》：唐代戚小二犁范</div><div class="d">央视新闻联合全国博物馆推出，讲解唐代用低熔点铜范浇铸铁器的「黑科技」</div></span><span class="m">日更栏目</span></li>
+          <li><span class="no">4</span><span class="bd"><div class="t">大型纪录片《伟大远征》</div><div class="d">纪念长征胜利90周年，央视综合频道20点档首播</div></span><span class="m">黄金档</span></li>
+          <li><span class="no">5</span><span class="bd"><div class="t">动物摇 / 卡点舞挑战</div><div class="d">动作与音乐重拍契合、模仿门槛低，短视频平台二次创作扩散</div></span><span class="m">挑战热</span></li>
+          <li><span class="no">6</span><span class="bd"><div class="t">AI换脸二创《NEON》齐舞</div><div class="d">网友合成前辈社长跳女团舞，登上热搜；属明知玩梗的反差消费</div></span><span class="m">娱乐热搜</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 两岸国际速览 -->
+  <section>
+    <div class="h2"><i></i><h2>两岸 · 国际速览</h2><small>坚持一个中国原则 · 涉台表述遵循官方口径</small></div>
+    <div class="two">
+      <div class="news">
+        <div class="k"><span class="badge b0">两岸</span><span class="kt">两岸关系</span></div>
+        <ul>
+          <li><b>国台办：大是大非问题上没有任何模糊空间。</b>发言人指出，任何人、任何势力都不能一边赚取大陆发展红利，一边与「台独」分裂势力勾连纠缠做「两面人」。<span class="s">（新华社 · 中国台湾网）</span></li>
+          <li><b>中国台湾网评论：谋「独」又想牟利绝无空间。</b>两岸交流合作的大门始终向广大台湾同胞敞开，但前提是不能在大是大非的原则问题上踩线越界。<span class="s">（中国台湾网 · 文/文方）</span></li>
+          <li><b>美企拟与台湾业者探讨联合生产无人机。</b>美国宇航环境公司与台湾雷虎科技签署谅解备忘录，涉及无人机本地化共同生产等。中方多次敦促美方停止向中国台湾地区出售武器、停止在台海制造紧张。<span class="s">（俄罗斯卫星通讯社 · 外交部口径）</span></li>
+          <li><b>岛内舆论就相关政治人物言论展开讨论。</b>中评社报道，时事评论人士对相关表述提出批评与质疑。<span class="s">（中评社 · 观点标注来源）</span></li>
+        </ul>
+      </div>
+      <div class="news">
+        <div class="k"><span class="badge b1">外交</span><span class="kt">外交与国际</span></div>
+        <ul>
+          <li><b>外交部回应日媒公开靖国神社内部会议记录：</b>日本军国主义侵略罪行铁证如山，日本当政者应当正视历史、反省罪责。<span class="s">（外交部 · 央视新闻）</span></li>
+          <li><b>日本或调整「无核三原则」表述。</b>据《日本经济新闻》报道，日方暗示年底修订「安保三文件」时可能调整相关表述。<span class="s">（解放军报 · 日经）</span></li>
+          <li><b>中朝新鸭绿江大桥正式开通</b>，进一步促进两国经贸交流与人员往来。<span class="s">（央视新闻）</span></li>
+          <li><b>中国海军「吉祥方舟」号医院船首次访问科特迪瓦</b>，执行「和谐使命-2026」任务并提供医疗服务。<span class="s">（解放军报）</span></li>
+          <li><b>中国驻沙特大使馆就当前沙特局势发布安全提醒。</b><span class="s">（中国驻沙特大使馆）</span></li>
+        </ul>
+      </div>
+      <div class="news">
+        <div class="k"><span class="badge b2">国际</span><span class="kt">全球动态</span></div>
+        <ul>
+          <li><b>IMF发布最新一期亚太地区经济展望：</b>预计2026年亚太地区经济增长4.8%，高于今年4月预测的4.4%。<span class="s">（央视新闻）</span></li>
+          <li><b>中东局势：</b>有美方官员称考虑对伊朗能源与核设施采取军事选项；伊朗方面表示已做好准备应对任何新的侵略；也门胡塞武装称再次袭击沙特首都机场。<span class="s">（新华社）</span></li>
+          <li><b>美国8个州总检察长分别起诉OpenAI</b>，指控ChatGPT在产品安全性方面误导用户、危害未成年人安全。<span class="s">（新华社）</span></li>
+          <li><b>亚太市场：</b>韩国股市暴跌触发熔断机制，日本股市大幅收跌，全球风险偏好骤降。<span class="s">（东方财富 · 新浪财经）</span></li>
+          <li><b>其他：</b>巴基斯坦学校屋顶坍塌事故死亡人数升至28人；阿尔卑斯山最高峰勃朗峰雪顶3年「长高」近2米。<span class="s">（新华社等）</span></li>
+        </ul>
+      </div>
+      <div class="news">
+        <div class="k"><span class="badge b3">提示</span><span class="kt">编审与风险提示</span></div>
+        <ul>
+          <li>涉台表述严格使用一个中国原则口径，统一采用「中国台湾地区」及「台湾同胞」表述；外部涉台动向引用时同步标注中方立场。</li>
+          <li>财经数据（CPI、股指、熔断等）以公开报道为准，属<b>历史行情与已公开数据</b>，不构成任何投资建议。</li>
+          <li>TOP榜热度为公开报道披露的<b>量级数值</b>，非平台后台精确统计，仅作选题参考。</li>
+          <li>涉及境外媒体的报道均已标注来源；观点类内容已明确标注为来源方观点。</li>
+          <li>据中央气象台：15日20时至16日20时，湖南西部和东北部、湖北东南部、江西北部、安徽西南部等地有暴雨或大暴雨；天山东部、甘肃河西等地有大雪或暴雪。<span class="s">（中央气象台）</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    晨间新闻看板 · 2026-10-16 · 第40期 ｜ 内容基于当日公开报道汇编，未作虚构与主观推演<br>
+    在线地址：<a href="https://jinghu0313-dev.github.io/morning-brief/">https://jinghu0313-dev.github.io/morning-brief/</a>
+  </footer>
+</div>
+</body>
+</html>
